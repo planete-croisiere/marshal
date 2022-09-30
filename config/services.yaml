@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-    oauth2_client_available_scopes: ['email']
+    oauth2_client_available_scopes: ['email', 'identity', 'phoneNumber']
     email_from: '%env(MAILER_EMAIL_FROM)%'
 
 services:

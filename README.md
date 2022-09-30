@@ -1,4 +1,4 @@
-# Marshal : OAuth2 app server and user management tool
+# Marshal by Planète-Croisière : OAuth2 app server and user management tool
 
 ## Use project
 

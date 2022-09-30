@@ -1,6 +1,10 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     form_themes: ['bootstrap_5_layout.html.twig']
+    globals:
+        catalog_url: '%env(CATALOG_URL)%'
+        erp_url: '%env(ERP_URL)%'
+        frontoffice_url: '%env(FRONTOFFICE_URL)%'
 
 when@test:
     twig:

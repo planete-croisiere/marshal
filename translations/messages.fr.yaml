@@ -2,8 +2,8 @@
 
 title:
     homepage:
-        title: Marshal - Gestion d'utilisateurs - Serveur OAuth2/OpenID Connect
-        h1: Marshal
+        title: Planète-Croisière - Gestion d'utilisateurs - Serveur OAuth2/OpenID Connect
+        h1: Planète-Croisière
         h3: Gestion d'utilisateurs
         h4: Serveur OAuth2/OpenID Connect
     login:
@@ -36,7 +36,10 @@ invalidMessage:
 
 cta:
     homepage:
-        backofficeAccess: Accès à l'interface d'administration
+        backofficeAccess: Gestion utilisateurs
+        catalogAccess: Catalogue
+        erpAccess: CRM
+        frontofficeAccess: Site pour les clients
     login:
         submit: Connexion
     consent:
@@ -86,6 +89,11 @@ flashSuccess:
 'Bad credentials.': 'Identifiants invalides.'
 'The presented password is invalid.': 'Identifiants invalides.'
 
+# Specific roles Planète-Croisière
+Seller: Vendeur
+Partner: Apporteur d'affaire
+Catalog: Responsable catalogue
+
 # natives messages without structure from EadyAdmin generation
 ID: ID
 Uuid: Uuid
@@ -105,3 +113,7 @@ Active: Activé
 # scopes
 email: email
 email.label: Votre adresse e-mail
+identity: identité
+identity.label: Identité (nom/prénom)
+phoneNumber: "N° téléphone"
+phoneNumber.label: Numéro professionnel
