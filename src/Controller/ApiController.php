@@ -17,6 +17,11 @@ class ApiController extends AbstractController
         return $this->json([
             'message' => 'You successfully authenticated!',
             'email' => $user->getEmail(),
+            'identity' => [
+                'firstName' => $user->getFirstName(),
+                'lastName' => $user->getLastName(),
+            ],
+            'phoneNumber' => $user->getPhoneNumber(),
             'roles' => $user->getRoles(),
         ]);
     }
