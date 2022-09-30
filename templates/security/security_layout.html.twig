@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="login-page bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <h3 class="mb-3">{% block content_title %}{% endblock %}</h3>
+                    <div class="bg-white shadow rounded">
+                        <div class="row">
+                            <div class="col-md-7 pe-0">
+                                <div class="form-left h-100 py-5 px-5">
+                                    {% block col_left %}{% endblock %}
+                                </div>
+                            </div>
+                            <div class="col-md-5 ps-0 d-none d-md-block">
+                                {% block col_right %}{% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-end text-secondary mt-3">
+                        <small>
+                            {{ 'text.login.legalNotices'|trans }}
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

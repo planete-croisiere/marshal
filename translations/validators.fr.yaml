@@ -1,0 +1,3 @@
+invalidMessage:
+    resetPassword:
+        notMatch: Les mots de passe doivent être identiques.

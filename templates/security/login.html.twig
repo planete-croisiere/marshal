@@ -1,0 +1,48 @@
+{% extends 'security/security_layout.html.twig' %}
+
+{% block title %}{{ 'title.login.title'|trans }}{% endblock %}
+
+{% block content_title %}
+    {{ 'title.login.h3'|trans }}
+{% endblock %}
+
+{% block col_left %}
+    <form action="{{ path('app_login') }}" method="post" class="row g-4 needs-validation">
+        {% if error is not null %}
+            <div class="invalid-feedback d-inline-block">
+                {{ error.message|trans }}
+            </div>
+        {% endif %}
+        <div class="col-12">
+            <label>{{ 'label.login.userIdentifier'|trans }}<span class="text-danger">*</span></label>
+            <div class="input-group">
+                <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                <input type="email" class="form-control" tabindex="1" required id="username" name="_username" value="{{ last_username }}">
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label>{{ 'label.login.password'|trans }}<span class="text-danger">*</span></label>
+            <div class="input-group">
+                <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
+                <input type="password" class="form-control" tabindex="2" required id="password" name="_password">
+            </div>
+        </div>
+
+        <!--<div class="col-sm-6">
+            <a href="#" class="float-end text-primary">Forgot Password?</a>
+        </div>-->
+
+        <div class="col-12">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <button type="submit" class="btn btn-primary px-4 float-end mt-4">{{ 'cta.login.submit'|trans }}</button>
+        </div>
+    </form>
+{% endblock %}
+
+{% block col_right %}
+    <div class="form-right h-100 bg-primary text-white text-center pt-5">
+        <i class="bi bi-person-square"></i>
+        <h2 class="fs-1">{{ 'title.login.h2'|trans }}</h2>
+    </div>
+{% endblock %}

@@ -1,0 +1,107 @@
+# type.pageName.{level|field}
+
+title:
+    homepage:
+        title: Marshal - Gestion d'utilisateurs - Serveur OAuth2/OpenID Connect
+        h1: Marshal
+        h3: Gestion d'utilisateurs
+        h4: Serveur OAuth2/OpenID Connect
+    login:
+        title: Connectez-vous maintenant
+        h3: Connectez-vous maintenant
+        h2: Bienvenue !
+    consent:
+        title: Demande d'autorisations
+        h3: Demande d'autorisations
+        h2: Ok pour vous ?
+    resetPassword:
+        title: Définir un mot de passe
+        h3: Définir un mot de passe
+
+label:
+    login:
+        userIdentifier: Adresse e-mail
+        password: Mot de passe
+    resetPassword:
+        password: Mot de passe
+        repeatPassword: Confirmation
+
+validMessage:
+    resetPassword:
+        ok: Enregistré !
+
+invalidMessage:
+    login:
+        accountNotActive: Votre compte est inactif.
+
+cta:
+    homepage:
+        backofficeAccess: Accès à l'interface d'administration
+    login:
+        submit: Connexion
+    consent:
+        yes: Oui, j'accepte
+        no: Non, je refuse
+    admin:
+        user:
+            sendChoicePassword: Nouveau mot de passe
+    email:
+        choosePassword: Cliquez ici pour accéder au formulaire
+    resetPassword:
+        submit: Enregistrer
+
+text:
+    login:
+        legalNotices: Marshal - Gestion d'utilisateurs - Serveur OAuth2/OpenID Connect
+    consent:
+        appAsk: "L'application %clientName% souhaite accéder aux données suivantes de votre compte utilisateur :"
+        alreadyGive: "Vous avez déjà donné à cette application votre autorisation pour les éléments suivants :"
+        agree: Pour autoriser cet accès, cliquez sur le bouton ci-dessous.
+    email:
+        choosePassword: "Choisissez un nouveau mot de passe pour votre adresse email %email%."
+    resetPassword:
+        complexity: Saisissez un mot de passe suffisament complexe (au moins 1 majuscule, 1 chiffre et 8 caractères)
+
+nav:
+    admin:
+        users: Utilisateurs
+        oauth2Clients: Clients (OAuth2)
+        backToHomepage: Sortir de l'admin
+
+help:
+    admin:
+        userPassword: "Ne modifier pas si vous ne savez pas comment hasher les mots de passe."
+        oauth2ClientSecret: "Laissez vide pour un client public. Sinon copier/coller cette clé pour la conserver car vous ne pourrez plus la retrouver."
+
+subject:
+    choosePassword: 'Définissez votre mot de passe'
+
+flashSuccess:
+    admin:
+        sendEmailForChoose: "L'email a bien été envoyé !"
+
+# native messages without structure
+'Administrator': 'Administrateur'
+'Super Administrator': 'Super Administrateur'
+'Bad credentials.': 'Identifiants invalides.'
+'The presented password is invalid.': 'Identifiants invalides.'
+
+# natives messages without structure from EadyAdmin generation
+ID: ID
+Uuid: Uuid
+User: Utilisateur
+Email: Adresse e-mail
+Encoded password: Mot de passe hashé
+Roles: Rôles
+Client: Client
+Name: Nom
+Identifier: Client ID
+Secret: Client Secret
+Scope Strings: Champs d'application autorisés
+Redirect Uri Strings: Urls de redirection autorisées
+Allow Plain Text Pkce: Requête PKCE en texte plein autorisé
+Active: Activé
+
+# scopes
+email: email
+email.label: Votre adresse e-mail

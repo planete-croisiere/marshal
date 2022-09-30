@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'title.homepage.title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="container d-flex flex-column">
+        <div class="row align-items-center justify-content-center min-vh-100">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="valid-icon h-100 bg-primary text-white text-center py-5">
+                            <i class="bi bi-person-bounding-box"></i>
+                            <h1 class="fs-1">{{ 'title.homepage.h1'|trans }}</h1>
+                            <h3>{{ 'title.homepage.h3'|trans }}</h3>
+                            <h4>{{ 'title.homepage.h4'|trans }}</h4>
+                            <a href="{{ path('admin') }}" class="btn btn-sm btn-primary mt-3">
+                                {{ 'cta.homepage.backofficeAccess'|trans }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

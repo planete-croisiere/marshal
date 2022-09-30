@@ -1,0 +1,48 @@
+{% extends 'security/security_layout.html.twig' %}
+
+{% block title %}{{ 'title.consent.title'|trans }}{% endblock %}
+
+{% block content_title %}
+    {{ 'title.consent.h3'|trans }}
+{% endblock %}
+
+{% block col_left %}
+    <form action="{{ path('app_consent', app.request.query.all) }}" method="post" class="row g-4 needs-validation">
+        <p>{{ 'text.consent.appAsk'|trans({'%clientName%':client.name}) }}</p>
+        <ul class="ms-3">
+            {% for scope in scopes %}
+                <li>{{ (scope ~ '.label')|trans }}</li>
+            {% endfor %}
+        </ul>
+        {% if existing_scopes|length > 0 %}
+            <p>{{ 'text.consent.alreadyGive'|trans }}</p>
+            <ul class="ms-3">
+                {% for scope in existing_scopes %}
+                    <li>{{ (scope ~ '.label')|trans }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p>{{ 'text.consent.agree'|trans }}</p>
+
+        <div class="col-12">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('consent') }}">
+
+            <button class="btn btn-primary px-4 mt-4" tabindex="1" type="submit" name="consent" value="yes">
+                {{ 'cta.consent.yes'|trans }}
+            </button>
+
+            <button class="btn btn-outline-danger px-4 mt-4" tabindex="2" type="submit" name="consent" value="no">
+                {{ 'cta.consent.no'|trans }}
+            </button>
+        </div>
+    </form>
+{% endblock %}
+
+
+{% block col_right %}
+    <div class="form-right h-100 bg-primary text-white text-center pt-5">
+        <i class="bi bi-file-earmark-lock2"></i>
+        <h2 class="fs-1">{{ 'title.consent.h2'|trans }}</h2>
+    </div>
+{% endblock %}
