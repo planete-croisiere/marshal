@@ -25,7 +25,7 @@ final class Version20220930193618 extends AbstractMigration
             ALTER TABLE oauth2_authorization_code ADD CONSTRAINT FK_509FEF5FC7440455 FOREIGN KEY (client) REFERENCES oauth2_client (identifier) ON DELETE CASCADE;
             ALTER TABLE oauth2_refresh_token ADD CONSTRAINT FK_4DD90732B6A2DD68 FOREIGN KEY (access_token) REFERENCES oauth2_access_token (identifier) ON DELETE SET NULL;
             ALTER TABLE oauth2_access_token ADD CONSTRAINT FK_454D9673C7440455 FOREIGN KEY (client) REFERENCES oauth2_client (identifier) ON DELETE CASCADE;");
-        $this->addSql("INSERT INTO \"user\" (id, email, roles, password, uuid, active) VALUES (1, 'admin@test.com', '[\"ROLE_SUPER_ADMIN\"]', '$2y$13$8Kde6G4pDCflnzDEw8DsyeHiP2h2DyYboHr2kJgLXP7wWgJI0o1Mu', 'da9fb310-0d94-41cb-b74b-a92cedad1614', true);");
+        $this->addSql("INSERT INTO `user` (id, email, roles, password, uuid, active) VALUES (1, 'admin@test.com', '[\"ROLE_SUPER_ADMIN\"]', '$2y$13$8Kde6G4pDCflnzDEw8DsyeHiP2h2DyYboHr2kJgLXP7wWgJI0o1Mu', 'da9fb310-0d94-41cb-b74b-a92cedad1614', true);");
     }
 
     public function down(Schema $schema): void
