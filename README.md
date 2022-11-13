@@ -2,6 +2,17 @@
 
 ## Use project
 
+### First time
+
+```bash
+mkdir var/keys
+openssl genrsa -out var/keys/private.key
+openssl rsa -in var/keys/private.key -pubout -out var/keys/public.key
+make start
+```
+
+### Then
+
 ```bash
 make start
 ```

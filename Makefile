@@ -19,6 +19,8 @@ coverage:
 
 ## Use
 start:
+	symfony proxy:start
+	symfony proxy:domain:attach local.marshal.planete-croisiere
 	docker-compose up -d
 	@composer install
 	@yarn install

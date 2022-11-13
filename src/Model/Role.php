@@ -9,5 +9,7 @@ enum Role: string {
     case ROLE_ADMIN = 'Administrator';
     case ROLE_CRM_SELLER = 'Seller';
     case ROLE_CRM_PARTNER = 'Partner';
+    case ROLE_CRM_BACKOFFICE = 'Backoffice';
+    case ROLE_CRM_CUSTOMER_SERVICE = 'Customer Service';
     case ROLE_CATALOG = 'Catalog';
 }
