@@ -27,7 +27,7 @@ start:
 	php bin/console doctrine:migrations:migrate -n
 	@symfony server:ca:install
 	symfony server:start -d
-	yarn encore dev-server
+	yarn encore dev-server --port 7000
 
 stop:
 	docker-compose stop
