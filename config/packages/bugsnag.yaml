@@ -1,0 +1,10 @@
+bugsnag:
+    api_key: '%env(BUGSNAG_API_KEY)%'
+    batch_sending: false
+    discard_classes:
+        - Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+        - Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
+        - Symfony\Component\Security\Core\Exception\AccessDeniedException
+        - Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
+        - ApiPlatform\Core\Bridge\Symfony\Validator\Exception\ValidationException
+        - Symfony\Component\HttpKernel\Exception\GoneHttpException
