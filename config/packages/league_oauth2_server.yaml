@@ -4,7 +4,7 @@ league_oauth2_server:
         private_key_passphrase: null
         encryption_key: 'Ex4Q6Ik/9y+tH/ujvWEQDYDX6xBFqkwLVfcU9kADVng='
         encryption_key_type:  plain # One of "plain"; "defuse"
-        access_token_ttl: PT1H
+        access_token_ttl: P1W
         refresh_token_ttl: P1M
         auth_code_ttl: PT10M
         enable_client_credentials_grant: true
