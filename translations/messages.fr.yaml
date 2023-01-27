@@ -95,6 +95,7 @@ Partner: Apporteur d'affaire
 Catalog: Responsable catalogue
 Backoffice: Backoffice
 'Customer Service': 'Service Client'
+Impersonator: "Usurpateur d'identité"
 
 # natives messages without structure from EadyAdmin generation
 ID: ID
