@@ -13,4 +13,6 @@ enum Role: string {
     case ROLE_CRM_PARTNER = 'Partner';
     case ROLE_CRM_BACKOFFICE = 'Backoffice';
     case ROLE_CATALOG = 'Catalog';
+    case ROLE_FRONTOFFICE_ADMIN = 'Admin. frontoffice';
+    case ROLE_FRONTOFFICE_EDITOR = 'Éditeur frontoffice';
 }
