@@ -1,0 +1,185 @@
+_type: export
+__export_format: 4
+__export_date: 2024-03-15T14:50:05.427Z
+__export_source: insomnia.desktop.app:v2022.7.0
+resources:
+  - _id: req_db5f9346b0c6452cbff7836103cabc7a
+    parentId: wrk_8e8e5fd7cf3545abaae7ad771cde89dd
+    modified: 1710513658179
+    created: 1710513610080
+    url: "{{ base_url }}/api/me"
+    name: /api/me
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - id: pair_3786707e875344a19850027179e128c6
+        name: authorization
+        value: Bearer
+          eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJjNDUzOTg2Mjk4MDRkNGJlNzQwMTFhZjQyMzZmYTAwZiIsImp0aSI6ImJjY2UwNzQ4YjA3YjNlMmI0MzI3OWY1NDg3MWE2NDY4Nzk0NTAzYWY4OTYxZTVjMjMzMjk0YmYzN2M3ZmQ3NDUzYWE3ZTRlZGMyMDJmYWNlIiwiaWF0IjoxNzEwNTEzNTkyLjc2MTAyLCJuYmYiOjE3MTA1MTM1OTIuNzYxMDI1LCJleHAiOjE3MTExMTgzOTIuNzI5MjM5LCJzdWIiOiJtYXRoaWV1QGR1bW91dGllci5mciIsInNjb3BlcyI6WyJlbWFpbCIsImlkZW50aXR5IiwicGhvbmVOdW1iZXIiXX0.nLcHRZ3jF5yiZvTH9hvO__oxYmZbOVTZGMSLSy0ZcWs4SCAS2MIbqxo3UIQz9PWmudIhki4jL-Ca1cuLrQJZd0OwRtKNJewypshY-Fpp77f87LdGz1xBwSZvhbjuc-uAr-jn4lt_IZ-FmZIW5nH1IlJaHNrEICEPHOlkFiH0Qld2V4rgjbgHvuFfyStyPoG4dBKEaSSE8iY3aMpxdBOhd8OtwbUvSD6lJxcbpP3pnexOM4hsFX0ML7tYx33DRmtqlJmijFQ9CU7UEqTHALZf3tZ3gn03C1sDTYlnkYY_sV7Ic4ggNM8DpW9KlSj5YbEUtVWgqnqHTDpeX8NCDFclhQ
+        description: ""
+    authentication: {}
+    metaSortKey: -1710513610080
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_8e8e5fd7cf3545abaae7ad771cde89dd
+    parentId: null
+    modified: 1710511872251
+    created: 1710511872251
+    name: OAuth 2.0 flow
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_21c6b80a866e4c69b44896e7d82b7eb0
+    parentId: wrk_8e8e5fd7cf3545abaae7ad771cde89dd
+    modified: 1710512939379
+    created: 1710511874800
+    url: "{{ base_url }}/authorize"
+    name: Authorize
+    description: ""
+    method: GET
+    body: {}
+    parameters:
+      - id: pair_e2b78ed719564080827af3aa29601cc5
+        name: client_id
+        value: "{{ client_id }}"
+        description: ""
+      - id: pair_382348c9e273468a8e207351246b431f
+        name: state
+        value: "123456456698564785"
+        description: ""
+      - id: pair_e48c1bbc0fab4f629971b5ac5113a6d6
+        name: redirect_uri
+        value: "{{ redirect_uri }}"
+        description: ""
+      - id: pair_833fa9aa3e6a4afd812c052c04c7e10d
+        name: scope
+        value: "{{ scope }}"
+        description: ""
+      - id: pair_75e733a3700c43c58fd27ae479e5082d
+        name: response_type
+        value: code
+        description: ""
+        disabled: false
+    headers: []
+    authentication: {}
+    metaSortKey: -1710511874800
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a287cf5af02245e5ae10672f9739f3be
+    parentId: wrk_8e8e5fd7cf3545abaae7ad771cde89dd
+    modified: 1710513590637
+    created: 1710512935541
+    url: "{{ base_url }}/token"
+    name: Token
+    description: ""
+    method: POST
+    body:
+      mimeType: multipart/form-data
+      params:
+        - name: client_id
+          value: "{{ client_id }}"
+          id: pair_a13263fcb3844765a8dc616e5abaa377
+        - id: pair_f36ba47b733f49e3a2e48c549edaa1c4
+          name: client_secret
+          value: "{{ client_secret }}"
+          description: ""
+        - id: pair_d86d54c503e94d298a66f1d6ead04293
+          name: grant_type
+          value: authorization_code
+          description: ""
+        - id: pair_425be31b3c184425851735e9234fc64e
+          name: code
+          value: def502008d18e8e133b08c5f837b6164a57711e122c9dc14a11cda16d84d81ebac367c5cdf525d3f7bca48aac7f6e9c093b72c1d188cc8ad299bdccfbe04dcffb1d214fbfc98175dae83a752f6ead064a5387a96656d43c4dbd70d84d10fd3ebc12219b8476a537cc3171290495f7db563915625c693ef4ca43b60392bd6068e4833a0b2bc75116fba957265bb786b0925088550df367aec452f479598223b0b4e32e6d8d4d90e26bedefc9f04abe80b17ae887a3a01c738866c7d61c12ad67c02f5483b111d7cbf4880f51fe1c83fc1956ce45a06fbd00d86b5fd3759e287bd7f63507d212f1a250932c18a47bf946a91f38454885a893b404ccd01429da56157bd1e7d79b8c635eeb09d73a21d970e23edefd4bda52055b52d1751e365f68d6884f9afceaf6c37dc9574999c5cc476c0b6c65188c102e2c6975912d609b11b4fef3b257bd113b075931d532d61e0826d524a0ef9181a90dfb1c4ec353f64cdd07ec55a3f2fbb028fa4c7c8dbfb7d5a3a17aed4e654183f539c493034612436d83952fd5690568d711adc434d21577088b4a10af583234a982d541d012a9d34b23b03908313a44e67bd673ae5f9854c73a3c0aa13dcf5356e1faa39052f74c0290b345a1bf5bac034a6933711
+          description: ""
+        - id: pair_46e68a9a4e1d4c1fa1c4ab6ae9d72e72
+          name: redirect_uri
+          value: "{{ redirect_uri }}"
+          description: ""
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: multipart/form-data
+    authentication: {}
+    metaSortKey: -1704067872320.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_864810511f1170c5e35a50505730ff4ce60c6001
+    parentId: wrk_8e8e5fd7cf3545abaae7ad771cde89dd
+    modified: 1710511872254
+    created: 1710511872254
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1710511872254
+    _type: environment
+  - _id: jar_864810511f1170c5e35a50505730ff4ce60c6001
+    parentId: wrk_8e8e5fd7cf3545abaae7ad771cde89dd
+    modified: 1710512884627
+    created: 1710511872255
+    name: Default Jar
+    cookies:
+      - key: PHPSESSID
+        value: gr5k0ve5ufjq6mfla7f3ks4eef
+        domain: preprod.marshal.planete-croisiere.com
+        path: /
+        secure: true
+        httpOnly: true
+        extensions:
+          - samesite=lax
+        hostOnly: true
+        creation: 2024-03-15T14:28:04.627Z
+        lastAccessed: 2024-03-15T14:28:04.627Z
+        id: "7552423619998856"
+    _type: cookie_jar
+  - _id: spc_4790e6fb88ce4766b188e050c224947a
+    parentId: wrk_8e8e5fd7cf3545abaae7ad771cde89dd
+    modified: 1710511872252
+    created: 1710511872252
+    fileName: OAuth 2.0 flow
+    contents: ""
+    contentType: yaml
+    _type: api_spec
+  - _id: env_7ea8862c95ff4eb297030d4598f44956
+    parentId: env_864810511f1170c5e35a50505730ff4ce60c6001
+    modified: 1710512882778
+    created: 1710511936340
+    name: Préprod Atrium
+    data:
+      base_url: https://preprod.marshal.planete-croisiere.com
+      client_id: c45398629804d4be74011af4236fa00f
+      client_secret: 6f91b5b0090b58d4c8b12646464473d1bb8eedef85d46d4ecd55cfb00179d1bc5b2be6ae5197502330a2daa2e8b226a282acc299e4fdc1e99668c7edeef46059
+      scope: email identity phoneNumber
+      redirect_uri: https://preprod.atrium.planete-croisiere.com/oauth2_check
+    dataPropertyOrder:
+      "&":
+        - base_url
+        - client_id
+        - client_secret
+        - scope
+        - redirect_uri
+    color: null
+    isPrivate: false
+    metaSortKey: 1710511936340
+    _type: environment

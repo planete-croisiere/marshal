@@ -21,16 +21,16 @@ coverage:
 start:
 	symfony proxy:start
 	symfony proxy:domain:attach local.marshal.planete-croisiere
-	docker-compose up -d
+	docker compose up -d
 	@composer install
 	@yarn install
 	php bin/console doctrine:migrations:migrate -n
 	@symfony server:ca:install
 	symfony server:start -d
-	yarn encore dev-server --port 7000
+	yarn encore dev-server --port 7001
 
 stop:
-	docker-compose stop
+	docker compose stop
 	symfony server:stop
 
 reinit-fixtures:
