@@ -1,0 +1,44 @@
+{% extends 'admin.html.twig' %}
+
+{% trans_default_domain 'admin' %}
+
+{% block main %}
+    <div class="prose mb-12">
+        <h1>{{ 'scheduler.title'|trans }}</h1>
+        <p class="text-base-content">
+            {{ 'scheduler.description'|trans|raw }}
+        </p>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="table table-zebra">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>{{ 'scheduler.table.trigger'|trans }}</th>
+                    <th>{{ 'scheduler.table.scheduler'|trans }}</th>
+                    <th>{{ 'scheduler.table.provider'|trans }}</th>
+                    <th>{{ 'scheduler.table.next_run_date'|trans }}</th>
+                    <th>{{ 'scheduler.table.actions'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for message in schedule_messages %}
+                    <tr>
+                        <td>{{ message.id }}</td>
+                        <td>{{ message.trigger }}</td>
+                        <td>{{ message.scheduler }}</td>
+                        <td>{{ message.provider }}</td>
+                        <td>{{ message.nextRunDate|format_datetime }}</td>
+                        <td>
+                            <a href="{{ path('admin_run_crud_index', {'filters[messageContextId][comparison]': '=', 'filters[messageContextId][value]': message.id}) }}"
+                               class="btn btn-soft btn-secondary">
+                                {{ 'scheduler.link.history'|trans }}
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
