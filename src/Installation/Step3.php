@@ -25,7 +25,7 @@ class Step3
 
         if ($loginForm->isSubmitted() && $loginForm->isValid()) {
             // We create the first admin user
-            $user = $this->userRepository->createAdmin($loginForm->getData()['email']);
+            $user = $this->userRepository->createSuperAdmin($loginForm->getData()['email']);
             // We send a email login link
             $this->loginLink->send($user);
         }

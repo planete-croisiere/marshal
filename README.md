@@ -41,7 +41,7 @@ To import the changes made to the *Fastfony* template into your project, we reco
 1. Run the script to synchronize your project with the latest version of Fastfony:
 
 ```console
-curl -sSL https://raw.githubusercontent.com/coopTilleuls/template-sync/main/template-sync.sh | sh -s -- https://github.com/fastfony/fastfony-pro
+curl -sSL https://raw.githubusercontent.com/coopTilleuls/template-sync/main/template-sync.sh | sh -s -- git@github.com:fastfony/fastfony-pro.git
 ```
 
 2. Resolve conflicts, if any

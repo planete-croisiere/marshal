@@ -29,10 +29,10 @@ class UserRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
-    public function createAdmin(string $email): User
+    public function createSuperAdmin(string $email): User
     {
         $user = $this->create($email);
-        $user->setRoles(['ROLE_ADMIN']);
+        $user->setRoles(['ROLE_SUPER_ADMIN']);
 
         $this->save($user);
 
