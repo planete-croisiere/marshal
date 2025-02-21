@@ -29,7 +29,7 @@ class Run
     #[ORM\Column]
     private string $runDate;
 
-    #[ORM\Column]
+    #[ORM\Column(name: '`trigger`', length: 255)]
     private string $trigger;
 
     #[ORM\Column]
