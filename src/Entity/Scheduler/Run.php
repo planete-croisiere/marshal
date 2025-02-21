@@ -29,7 +29,7 @@ class Run
     #[ORM\Column]
     private string $runDate;
 
-    #[ORM\Column(name: '`trigger`', length: 255)]
+    #[ORM\Column(name: '`trigger`')]
     private string $trigger;
 
     #[ORM\Column]
@@ -41,7 +41,7 @@ class Run
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $failureOutput = null;
 
-    #[ORM\Column]
+    #[ORM\Column(name: '`terminated`')]
     private bool $terminated = false;
 
     public function getMessageContextId(): string
