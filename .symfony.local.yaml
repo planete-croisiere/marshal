@@ -1,6 +1,6 @@
 proxy:
     domains:
-        - fastfony
+        - fastfony-pro
 
 http:
     port: 9876 
