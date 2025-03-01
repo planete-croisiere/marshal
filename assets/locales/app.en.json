@@ -9,6 +9,7 @@
   "No": "No",
   "Registration authorized": "Registration authorized",
   "Sender email address": "Sender email address",
+  "table.group-role-matrix": "Permissions / Groups",
   "This e-mail must be authorize by server configure on MAILER_DSN in .env.local": "This e-mail must be authorize by server configure on MAILER_DSN in .env.local",
   "Yes": "Yes"
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
+use App\Entity\Group;
 use App\Entity\Page;
-use App\Entity\Parameter;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
@@ -56,9 +56,14 @@ class Dashboard extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToRoute('menu.scheduler', 'fas fa-calendar-days', 'admin_scheduler_index');
+        yield MenuItem::linkToRoute('menu.group_role_matrix', 'fas fa-table', 'admin_group_role_matrix');
+        yield MenuItem::section('menu.crud');
         yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
         yield MenuItem::linkToCrud('Pages', 'fas fa-file', Page::class);
-        yield MenuItem::linkToCrud('Parameters', 'fas fa-gears', Parameter::class);
+        yield MenuItem::linkToCrud('Parameters', 'fas fa-gears', Group::class);
+        yield MenuItem::section('---');
         yield MenuItem::linkToRoute('Settings', 'fas fa-gear', 'admin_parameters');
         yield MenuItem::linkToRoute('Exit', 'fas fa-door-open', 'homepage');
     }

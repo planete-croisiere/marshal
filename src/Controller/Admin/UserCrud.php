@@ -69,7 +69,7 @@ class UserCrud extends AbstractCrudController
             ->linkToCrudAction('sendLoginLinkEmail')
             ->displayIf(fn ($entity) => $entity->isEnabled());
 
-        $groupsCrudAction = Action::new('groups', 'Groups')
+        $groupsCrudAction = Action::new('groups', 'Groups', 'fa fa-users')
             ->linkToUrl($this->adminUrlGenerator
                 ->setController(GroupCrud::class)
                 ->setAction(Action::INDEX)

@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
-use App\Entity\Group;
+use App\Entity\RoleCategory;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 
-class GroupCrud extends AbstractCrudController
+class RoleCategoryCrud extends AbstractCrudController
 {
     public function __construct(
         private readonly AdminUrlGenerator $adminUrlGenerator,
@@ -24,7 +23,14 @@ class GroupCrud extends AbstractCrudController
 
     public static function getEntityFqcn(): string
     {
-        return Group::class;
+        return RoleCategory::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInPlural('Role categories')
+            ->setDefaultSort(['name' => 'ASC']);
     }
 
     public function configureFields(string $pageName): iterable
@@ -38,16 +44,7 @@ class GroupCrud extends AbstractCrudController
                     'by_reference' => false,
                 ])
                 ->hideOnIndex(),
-            AssociationField::new('users')
-                ->hideOnForm(),
         ];
-    }
-
-    public function configureCrud(Crud $crud): Crud
-    {
-        return $crud
-            ->setEntityLabelInPlural('Groups')
-            ->setDefaultSort(['name' => 'ASC']);
     }
 
     public function configureActions(Actions $actions): Actions
@@ -62,14 +59,6 @@ class GroupCrud extends AbstractCrudController
 
         return $actions
             ->add(Crud::PAGE_INDEX, $rolesCrudAction)
-        ;
-    }
-
-    public function configureFilters(Filters $filters): Filters
-    {
-        return $filters
-            ->add('name')
-            ->add('roles')
         ;
     }
 }

@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 
@@ -29,12 +30,13 @@ class RoleCrud extends AbstractCrudController
     {
         return [
             TextField::new('name'),
+            AssociationField::new('category'),
         ];
     }
 
     public function configureActions(Actions $actions): Actions
     {
-        $groupsCrudAction = Action::new('groups', 'Groups')
+        $groupsCrudAction = Action::new('groups', 'Groups', 'fa fa-users')
             ->linkToUrl($this->adminUrlGenerator
                 ->setController(GroupCrud::class)
                 ->setAction(Action::INDEX)
@@ -42,8 +44,17 @@ class RoleCrud extends AbstractCrudController
             )
             ->createAsGlobalAction();
 
+        $roleCategoriesCrudAction = Action::new('roleCategories', 'Categories', 'fa fa-gear')
+            ->linkToUrl($this->adminUrlGenerator
+                ->setController(RoleCategoryCrud::class)
+                ->setAction(Action::INDEX)
+                ->generateUrl()
+            )
+            ->createAsGlobalAction();
+
         return $actions
             ->add(Crud::PAGE_INDEX, $groupsCrudAction)
+            ->add(Crud::PAGE_INDEX, $roleCategoriesCrudAction)
         ;
     }
 
