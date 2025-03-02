@@ -7556,14 +7556,10 @@
                 "psr-4": {
                     "Symfony\\Component\\Scheduler\\": ""
                 },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
+                "exclude-from-classmap": ["/Tests/"]
             },
             "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
+            "license": ["MIT"],
             "authors": [
                 {
                     "name": "Sergey Rabochiy",
@@ -7580,11 +7576,7 @@
             ],
             "description": "Provides scheduling through Symfony Messenger",
             "homepage": "https://symfony.com",
-            "keywords": [
-                "cron",
-                "schedule",
-                "scheduler"
-            ],
+            "keywords": ["cron", "schedule", "scheduler"],
             "support": {
                 "source": "https://github.com/symfony/scheduler/tree/v7.2.3"
             },

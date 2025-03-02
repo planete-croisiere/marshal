@@ -1,63 +1,62 @@
 <template>
-    <table class="min-w-full table table-sm">
-        <thead>
-            <tr>
-                <th scope="col">{{ $t('table.group-role-matrix') }}</th>
-                <th v-for="group in groups" :key="group.id"
-                    scope="col"
-                >
-                    {{ group.name }}
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <template v-for="(roles, category) in rolesByCategory">
-                <tr v-if="'null' !== category" class="bg-base-200">
-                    <th :colspan="groups.length + 1" scope="colgroup">{{ category }}</th>
-                </tr>
-                <tr v-for="role in roles">
-                    <td>{{ role.name }}</td>
-                    <td v-for="group in groups" :key="group.id">
-                        <input
-                            type="checkbox"
-                            class="checkbox"
-                            :checked="role.groups.includes(group.id)"
-                            @change="toggle(role, group, $event)"
-                        />
-                    </td>
-                </tr>
-            </template>
-        </tbody>
-    </table>
+  <table class="min-w-full table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">{{ $t('table.group-role-matrix') }}</th>
+        <th v-for="group in groups" :key="group.id" scope="col">
+          {{ group.name }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <template v-for="(roles, category) in rolesByCategory">
+        <tr v-if="'null' !== category" class="bg-base-200">
+          <th :colspan="groups.length + 1" scope="colgroup">{{ category }}</th>
+        </tr>
+        <tr v-for="role in roles">
+          <td>{{ role.name }}</td>
+          <td v-for="group in groups" :key="group.id">
+            <input
+              type="checkbox"
+              class="checkbox"
+              :checked="role.groups.includes(group.id)"
+              @change="toggle(role, group, $event)"
+            />
+          </td>
+        </tr>
+      </template>
+    </tbody>
+  </table>
 </template>
 
 <script setup>
 import axios from 'axios';
 
 const props = defineProps({
-    groups: Array,
-    roles: Array,
+  groups: Array,
+  roles: Array,
 });
 
 const rolesByCategory = props.roles.reduce((acc, role) => {
-    if (!acc[role.category]) {
-        acc[role.category] = [];
-    }
+  if (!acc[role.category]) {
+    acc[role.category] = [];
+  }
 
-    acc[role.category].push(role);
+  acc[role.category].push(role);
 
-    return acc;
+  return acc;
 }, {});
 
 function toggle(role, group, $event) {
-    axios.post('/admin/group_role/toggle', { group_id: group.id, role_id: role.id })
-        .then(response => {
-            if ($event.target.checked !== response.data['checked']) {
-                $event.target.checked = response.data['checked'];
-            }
-        })
-        .catch(error => {
-            console.error(error);
-        });
+  axios
+    .post('/admin/group_role/toggle', { group_id: group.id, role_id: role.id })
+    .then((response) => {
+      if ($event.target.checked !== response.data['checked']) {
+        $event.target.checked = response.data['checked'];
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
 </script>

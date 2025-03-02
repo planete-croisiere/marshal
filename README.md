@@ -32,7 +32,7 @@ If you want to change the domain name, you can edit the `.symfony.local.yaml` fi
 
 ## Pro Features
 
-* Scheduler dashboard and logs : list configured recurring messages and display logs
+- Scheduler dashboard and logs : list configured recurring messages and display logs
 
 ## Docs
 
