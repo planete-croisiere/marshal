@@ -25,6 +25,7 @@ If you want to change the domain name, you can edit the `.symfony.local.yaml` fi
 - Register and received a login link by email
 - Login form with email that send a login link by email
 - Settings panel
+- Toasts notifications (flash messages from Symfony and others with [vue-toastification](https://vue-toastification.maronato.dev/))
 - DaisyUI themes chooser
 - API Platform 4
 - EasyAdmin (with Bootstrap 5) and CRUD controllers for : Users, Groups, Roles, Role categories, Parameters, Parameter categories
