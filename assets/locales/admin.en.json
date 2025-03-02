@@ -68,6 +68,7 @@
   "run_crud.title": "Run history of schedule",
   "Scheduler": "Schedule class",
   "scheduler.description": "List of schedule tasks. You can create own, more infos : <a class=\"link\" href=\"https://symfony.com/doc/current/scheduler.html\" target=\"_blank\">Scheduler Component</a>",
+  "scheduler.link.force_run": "Force run now",
   "scheduler.link.history": "See run history",
   "scheduler.table.actions": "Actions",
   "scheduler.table.next_run_date": "Next run date",

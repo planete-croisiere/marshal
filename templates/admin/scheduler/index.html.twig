@@ -32,8 +32,12 @@
                         <td>{{ message.nextRunDate|format_datetime }}</td>
                         <td>
                             <a href="{{ path('admin_run_crud_index', {'filters[messageContextId][comparison]': '=', 'filters[messageContextId][value]': message.id}) }}"
-                               class="btn btn-soft btn-secondary">
+                               class="btn btn-sm btn-soft btn-neutral">
                                 {{ 'scheduler.link.history'|trans }}
+                            </a>
+                            <a href="{{ path('admin_scheduler_force_run', {recurringMessageId: message.id}) }}"
+                               class="btn btn-sm btn-soft btn-secondary">
+                                {{ 'scheduler.link.force_run'|trans }}
                             </a>
                         </td>
                     </tr>

@@ -30,7 +30,7 @@ class Role
     #[ORM\ManyToMany(targetEntity: Group::class, mappedBy: 'roles')]
     private Collection $groups;
 
-    #[ORM\ManyToOne(inversedBy: 'role')]
+    #[ORM\ManyToOne(inversedBy: 'roles')]
     private ?RoleCategory $category = null;
 
     public function __construct()

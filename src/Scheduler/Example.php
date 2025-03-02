@@ -21,6 +21,8 @@ final class Example implements ScheduleProviderInterface
 
     public function getSchedule(): Schedule
     {
+        // This schedule and recurring message are just an example
+        // An exemple of MessageHandler is also available in src/MessageHandler/ExampleHandler.php
         return (new Schedule())
             ->add(
                 RecurringMessage::every('1 minute', new Notification('Hello world', ['email'])),

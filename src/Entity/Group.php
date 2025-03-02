@@ -26,7 +26,7 @@ class Group
     /**
      * @var Collection<int, Role>
      */
-    #[ORM\ManyToMany(targetEntity: Role::class)]
+    #[ORM\ManyToMany(targetEntity: Role::class, inversedBy: 'groups')]
     private Collection $roles;
 
     public function __construct()
