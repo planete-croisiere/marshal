@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
-use App\Entity\Group;
 use App\Entity\Page;
+use App\Entity\Parameter;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
@@ -62,7 +62,7 @@ class Dashboard extends AbstractDashboardController
         yield MenuItem::section('menu.crud');
         yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
         yield MenuItem::linkToCrud('Pages', 'fas fa-file', Page::class);
-        yield MenuItem::linkToCrud('Parameters', 'fas fa-gears', Group::class);
+        yield MenuItem::linkToCrud('Parameters', 'fas fa-gears', Parameter::class);
         yield MenuItem::section('---');
         yield MenuItem::linkToRoute('Settings', 'fas fa-gear', 'admin_parameters');
         yield MenuItem::linkToRoute('Exit', 'fas fa-door-open', 'homepage');

@@ -9,6 +9,7 @@ use App\Entity\Page;
 use App\Entity\Parameter;
 use App\Entity\ParameterCategory;
 use App\Entity\Role;
+use App\Entity\RoleCategory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -157,6 +158,28 @@ class Installation extends Fixture implements FixtureGroupInterface
             );
         }
 
+        $roleCategory = [
+            'General' => [
+                $this->getReference('ROLE_USER', Role::class),
+                $this->getReference('ROLE_ADMIN', Role::class),
+                $this->getReference('ROLE_SUPER_ADMIN', Role::class),
+            ],
+            'Facilities in admin' => [
+                $this->getReference('ROLE_ALLOWED_TO_SWITCH', Role::class),
+            ],
+        ];
+
+        foreach ($roleCategory as $key => $roleReferences) {
+            $roleCategory = (new RoleCategory())
+                ->setName($key);
+
+            foreach ($roleReferences as $roleReference) {
+                $roleCategory->addRole($roleReference);
+            }
+
+            $manager->persist($roleCategory);
+        }
+
         $groups = [
             'User' => [
                 $this->getReference('ROLE_USER', Role::class),
@@ -177,8 +200,8 @@ class Installation extends Fixture implements FixtureGroupInterface
             $group = (new Group())
                 ->setName($key);
 
-            foreach ($roles as $role) {
-                $group->addRole($role);
+            foreach ($roles as $roleCategory) {
+                $group->addRole($roleCategory);
             }
             $manager->persist($group);
         }

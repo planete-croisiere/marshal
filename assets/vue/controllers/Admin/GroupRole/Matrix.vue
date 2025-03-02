@@ -32,6 +32,12 @@
 <script setup>
 import axios from 'axios';
 
+import { useToast } from 'vue-toastification';
+const toast = useToast();
+
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
+
 const props = defineProps({
   groups: Array,
   roles: Array,
@@ -54,9 +60,10 @@ function toggle(role, group, $event) {
       if ($event.target.checked !== response.data['checked']) {
         $event.target.checked = response.data['checked'];
       }
-    })
-    .catch((error) => {
-      console.error(error);
+
+      toast.success(t('toast.group-role-matrix.toggle.success'), {
+        timeout: 2000,
+      });
     });
 }
 </script>

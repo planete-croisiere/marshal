@@ -21,12 +21,13 @@ If you want to change the domain name, you can edit the `.symfony.local.yaml` fi
 ## Features
 
 - Simple pages SEO friendly (front and backoffice)
+- Permissions matrix for the management of the user's rights
 - Register and received a login link by email
 - Login form with email that send a login link by email
 - Settings panel
 - DaisyUI themes chooser
 - API Platform 4
-- EasyAdmin (with Bootstrap 5) and CRUD controllers for : Users, Parameters, Parameter Categories
+- EasyAdmin (with Bootstrap 5) and CRUD controllers for : Users, Groups, Roles, Role categories, Parameters, Parameter categories
 - Webpack Encore, Vue.js, Tailwind CSS & DaisyUI
 - Taskfile for easy commands
 
