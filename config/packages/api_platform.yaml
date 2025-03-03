@@ -2,8 +2,8 @@ api_platform:
     title: Fastfony API (public & internal)
     version: 0.0.1
     formats:
-        jsonld: [ 'application/ld+json' ]
-        json: [ 'application/json' ]
+        jsonld: ['application/ld+json']
+        json: ['application/json']
     defaults:
         stateless: false # API is used by admin (stateful) and also by others users (stateless)
         cache_headers:

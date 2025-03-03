@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
-use App\Entity\Group;
-use App\Entity\Page;
-use App\Entity\Parameter;
-use App\Entity\ParameterCategory;
-use App\Entity\Role;
+use App\Entity\Page\Page;
+use App\Entity\Parameter\Parameter;
+use App\Entity\Parameter\ParameterCategory;
 use App\Entity\RoleCategory;
+use App\Entity\User\Group;
+use App\Entity\User\Role;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
