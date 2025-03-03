@@ -43,6 +43,13 @@ class UserCrud extends AbstractCrudController
     {
         return [
             EmailField::new('email'),
+            CollectionField::new('clients')
+                ->hideOnForm(),
+            AssociationField::new('clients')
+                ->setFormTypeOptions([
+                    'by_reference' => false,
+                ])
+                ->hideOnIndex(),
             CollectionField::new('groups')
                 ->hideOnForm(),
             AssociationField::new('groups')

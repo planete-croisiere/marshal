@@ -4,43 +4,39 @@ declare(strict_types=1);
 
 namespace App\Controller\Security;
 
-use App\Form\LoginFormType;
+use App\Form\RequestPasswordFormType;
 use App\Repository\UserRepository;
-use App\Security\LoginLink;
+use App\Security\ResetPasswordLink;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/request-login-link', name: 'request_login_link')]
-class RequestLoginLink extends AbstractController
+#[Route('/forgot-password', name: 'forgot_password')]
+class ForgotPassword extends AbstractController
 {
     public function __construct(
-        private LoginLink $loginLink,
-        private UserRepository $userRepository,
+        private readonly ResetPasswordLink $userPassword,
+        private readonly UserRepository $userRepository,
     ) {
     }
 
     public function __invoke(Request $request): Response
     {
-        if ($this->getUser()) {
-            $this->addFlash('info', 'flash.already_logged_in');
-        }
-
-        $loginForm = $this->createForm(LoginFormType::class);
+        $requestPasswordForm = $this->createForm(RequestPasswordFormType::class);
 
         if ($request->isMethod('POST')) {
-            $loginForm->handleRequest($request);
+            $requestPasswordForm->handleRequest($request);
 
-            if ($loginForm->isSubmitted() && $loginForm->isValid()) {
-                $email = $loginForm->get('email')->getData();
+            if ($requestPasswordForm->isSubmitted() && $requestPasswordForm->isValid()) {
+                $email = $requestPasswordForm->get('email')->getData();
                 $user = $this->userRepository->findOneBy([
                     'email' => $email,
                     'enabled' => true,
                 ]);
 
                 if (null !== $user) {
-                    if (!$this->loginLink->send($user)) {
+                    if (!$this->userPassword->send($user)) {
                         $this->addFlash(
                             'error',
                             'flash.login_link_sent.error',
@@ -50,7 +46,7 @@ class RequestLoginLink extends AbstractController
 
                 // We always redirect to the confirm message to avoid user enumeration
                 return $this->render(
-                    'security/request_login_link.html.twig',
+                    'security/forgot_password.html.twig',
                     [],
                     new Response(null, Response::HTTP_SEE_OTHER), // For Turbo drive compatibility
                 );
@@ -58,10 +54,8 @@ class RequestLoginLink extends AbstractController
         }
 
         return $this->render(
-            'security/request_login_link.html.twig',
-            [
-                'form' => $loginForm->createView(),
-            ],
-        );
+            'security/forgot_password.html.twig', [
+                'form' => $requestPasswordForm->createView(),
+            ]);
     }
 }

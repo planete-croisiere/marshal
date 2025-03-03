@@ -12,9 +12,21 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        api:
+            pattern: ^\/api\/(?!internal\/|docs$).*
+            security: true
+            stateless: true
+            oauth2: true
         main:
             lazy: true
             provider: app_user_provider
+            user_checker: App\Security\UserChecker
+            form_login:
+                login_path: login
+                check_path: login
+                enable_csrf: true
+                csrf_token_id: login
+                form_only: true
             login_link:
                 check_route: login_check
                 signature_properties: [id, email]
@@ -23,7 +35,9 @@ security:
             remember_me:
                 always_remember_me: true
                 signature_properties: ['id', 'email']
-            login_throttling: true
+            switch_user: true
+            login_throttling:
+                max_attempts: 3
             logout:
                 path: /logout
                 clear_site_data:
@@ -39,13 +53,13 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: ^/installation, roles: PUBLIC_ACCESS }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/(login|installation), roles: PUBLIC_ACCESS }
+        - { path: ^/api, roles: ROLE_API }
+        - { path: ^/(login$|request-login-link$|forgot-password$|register$|reset-password), roles: PUBLIC_ACCESS }
+        - { path: ^/(token$|.well-known/jwks.json), roles: PUBLIC_ACCESS }
+        - { path: ^/authorize, roles: IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/, roles: PUBLIC_ACCESS }
-
-    role_hierarchy:
-        ROLE_ADMIN: ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
 when@test:
     security:

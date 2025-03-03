@@ -141,6 +141,7 @@ class Installation extends Fixture implements FixtureGroupInterface
     private function createGroupsAndRoles(ObjectManager $manager): void
     {
         $roles = [
+            'ROLE_API' => 'Api access',
             'ROLE_USER' => 'User',
             'ROLE_ADMIN' => 'Administrator',
             'ROLE_ALLOWED_TO_SWITCH' => 'Allowed to switch',
@@ -160,6 +161,7 @@ class Installation extends Fixture implements FixtureGroupInterface
 
         $roleCategory = [
             'General' => [
+                $this->getReference('ROLE_API', Role::class),
                 $this->getReference('ROLE_USER', Role::class),
                 $this->getReference('ROLE_ADMIN', Role::class),
                 $this->getReference('ROLE_SUPER_ADMIN', Role::class),
@@ -182,6 +184,7 @@ class Installation extends Fixture implements FixtureGroupInterface
 
         $groups = [
             'User' => [
+                $this->getReference('ROLE_API', Role::class),
                 $this->getReference('ROLE_USER', Role::class),
             ],
             'Administrator' => [

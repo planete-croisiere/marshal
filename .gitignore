@@ -30,3 +30,7 @@ assets/vue/controllers/Test.vue
 ###< vincentlanglet/twig-cs-fixer ###
 .php-cs-fixer.cache
 .task/
+
+###> league/oauth2-server-bundle ###
+/config/jwt/*.pem
+###< league/oauth2-server-bundle ###

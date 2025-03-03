@@ -14,10 +14,15 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 #[ApiResource(
     operations: [
-        new GetCollection(),
-        new Patch(),
+        new GetCollection(
+            uriTemplate: '/internal/parameters',
+        ),
+        new Patch(
+            uriTemplate: '/internal/parameters/{id}',
+        ),
     ],
-    normalizationContext: ['groups' => ['parameter:read']],
+    normalizationContext: ['groups' => ['internal:parameter:read']],
+    security: "is_granted('ROLE_ADMIN')",
 )]
 #[ORM\Entity(repositoryClass: ParameterRepository::class)]
 class Parameter
@@ -31,28 +36,28 @@ class Parameter
         'url',
     ];
 
-    #[Groups(['parameter:read'])]
+    #[Groups(['internal:parameter:read'])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $label = null;
 
-    #[Groups(['parameter:read'])]
+    #[Groups(['internal:parameter:read'])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $help = null;
 
-    #[Groups(['parameter:read'])]
+    #[Groups(['internal:parameter:read'])]
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
     #[ORM\ManyToOne(inversedBy: 'parameters')]
     private ?ParameterCategory $category = null;
 
-    #[Groups(['parameter:read'])]
+    #[Groups(['internal:parameter:read'])]
     public function getKey(): string
     {
         return $this->key;
     }
 
-    #[Groups(['parameter:read'])]
+    #[Groups(['internal:parameter:read'])]
     public function getValue(): string
     {
         return $this->value;
@@ -99,7 +104,7 @@ class Parameter
         return $this->category;
     }
 
-    #[Groups(['parameter:read'])]
+    #[Groups(['internal:parameter:read'])]
     #[SerializedName('category')]
     public function getCategoryName(): ?string
     {
