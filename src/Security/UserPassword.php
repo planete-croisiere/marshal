@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Security;
 
-use App\Entity\RequestPassword;
-use App\Repository\UserRepository;
+use App\Entity\User\RequestPassword;
+use App\Repository\User\UserRepository;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserPassword

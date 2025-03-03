@@ -12,7 +12,10 @@ league_oauth2_server:
         default: ['email', 'roles']
     client:
         classname: App\Entity\OAuth2Server\Client
-
+    persistence:
+      doctrine:
+        entity_manager: default
+        
 when@test:
     league_oauth2_server:
         persistence:

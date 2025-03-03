@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Security;
 
-use App\Entity\RequestPassword;
 use App\Entity\User;
+use App\Entity\User\RequestPassword;
 use App\Repository\RequestPasswordRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;

@@ -15,7 +15,7 @@
     {% for role in role_entities %}
         {% set roles = [{
             id: role.id,
-            category: role.category.name,
+            category: role.category ? role.category.name : null,
             name: role.name,
             groups: role.groups|map(g => g.id),
         }]|merge(roles) %}

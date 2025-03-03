@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin\GroupRole;
 
-use App\Repository\GroupRepository;
-use App\Repository\RoleRepository;
+use App\Repository\User\GroupRepository;
+use App\Repository\User\RoleRepository;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;

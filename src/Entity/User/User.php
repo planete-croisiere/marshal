@@ -9,7 +9,6 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use App\Entity\CommonProperties;
 use App\Entity\OAuth2Server\Client;
-use App\Entity\RequestPassword;
 use App\Repository\User\UserRepository;
 use App\State\SelfUserProvider;
 use Doctrine\Common\Collections\ArrayCollection;

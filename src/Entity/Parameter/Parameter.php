@@ -53,6 +53,12 @@ class Parameter
     private ?ParameterCategory $category = null;
 
     #[Groups(['internal:parameter:read'])]
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    #[Groups(['internal:parameter:read'])]
     public function getKey(): string
     {
         return $this->key;

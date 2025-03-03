@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
-use App\Entity\RoleCategory;
+use App\Entity\User\RoleCategory;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;

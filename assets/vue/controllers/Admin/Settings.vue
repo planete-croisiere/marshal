@@ -11,7 +11,7 @@ const { t } = useI18n();
 const parameters = ref([]);
 
 onMounted(() => {
-  axios.get('/api/parameters').then((response) => {
+  axios.get('/api/internal/parameters').then((response) => {
     // We sort the parameters by their category
     parameters.value = response.data.member.reduce((data, parameter) => {
       if (!data[parameter.category]) {
@@ -27,7 +27,7 @@ const patchParameter = (parameter, event) => {
   if (event.target.checkValidity()) {
     axios
       .patch(
-        parameter['@id'],
+        '/api/internal/parameters/' + parameter['id'],
         { value: parameter.value },
         { headers: { 'Content-Type': 'application/merge-patch+json' } },
       )

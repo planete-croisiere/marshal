@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Security;
 
-use App\Entity\RequestPassword;
+use App\Entity\User\RequestPassword;
 use App\Security\UserPassword;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
