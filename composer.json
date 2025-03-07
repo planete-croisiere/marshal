@@ -7,8 +7,8 @@
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "ext-pdo_sqlite": "*",
         "ext-openssl": "*",
+        "ext-pdo_sqlite": "*",
         "api-platform/doctrine-orm": "^4.1.0",
         "api-platform/symfony": "^4.1.0",
         "doctrine/dbal": "^3.9.4",
@@ -62,7 +62,8 @@
         "twig/inky-extra": "^3.20",
         "twig/intl-extra": "^3.20",
         "twig/markdown-extra": "^3.20",
-        "twig/twig": "^2.12|^3.20"
+        "twig/twig": "^2.12|^3.20",
+        "vich/uploader-bundle": "^2.5"
     },
     "config": {
         "allow-plugins": {

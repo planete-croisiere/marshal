@@ -17,6 +17,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -42,14 +43,13 @@ class UserCrud extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
+            FormField::addTab('General'),
+            FormField::addColumn(8),
             EmailField::new('email'),
-            CollectionField::new('clients')
-                ->hideOnForm(),
-            AssociationField::new('clients')
-                ->setFormTypeOptions([
-                    'by_reference' => false,
-                ])
-                ->hideOnIndex(),
+            FormField::addColumn(4)
+                ->addCssClass('text-right pt-4 pe-5'),
+            BooleanField::new('enabled'),
+            FormField::addTab('Permissions'),
             CollectionField::new('groups')
                 ->hideOnForm(),
             AssociationField::new('groups')
@@ -57,7 +57,14 @@ class UserCrud extends AbstractCrudController
                     'by_reference' => false,
                 ])
                 ->hideOnIndex(),
-            BooleanField::new('enabled'),
+            CollectionField::new('clients')
+                ->hideOnForm(),
+            AssociationField::new('clients')
+                ->setFormTypeOptions([
+                    'by_reference' => false,
+                ])
+                ->hideOnIndex(),
+            FormField::addTab('Profile'),
             AssociationField::new('profile')
                 ->renderAsEmbeddedForm()
                 ->hideOnIndex(),

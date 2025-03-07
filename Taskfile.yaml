@@ -51,6 +51,7 @@ tasks:
         cmds:
             - task: vendor
             - task: node_modules
+            - chmod -R 777 public/uploads/
             - symfony console doctrine:schema:update --force  --env=dev
             - symfony proxy:start
             - symfony server:start -d

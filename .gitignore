@@ -34,3 +34,5 @@ assets/vue/controllers/Test.vue
 ###> league/oauth2-server-bundle ###
 /config/jwt/*.pem
 ###< league/oauth2-server-bundle ###
+
+public/uploads/

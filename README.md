@@ -26,7 +26,7 @@ If you want to change the domain name, you can edit the `.symfony.local.yaml` fi
 - Reset password by email
 - Login form with email that send a login link by email
 - Login form with password
-- Users management with Profile (and Groups, Roles, Role Categories)
+- Users management with Profile with photo (and Groups, Roles, Role Categories)
 - OAuth2 Server for the registered users and by applications/clients
 - Settings panel
 - Toasts notifications (flash messages from Symfony and others with [vue-toastification](https://vue-toastification.maronato.dev/))
