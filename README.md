@@ -35,6 +35,7 @@ If you want to change the domain name, you can edit the `.symfony.local.yaml` fi
 - EasyAdmin (with Bootstrap 5) and CRUD controllers for : Parameters, Parameter categories etc...
 - Webpack Encore, Vue.js 3, Tailwind CSS 4 & DaisyUI 5
 - Taskfile for easy install & start commands (just `task start` and develop)
+- Flysystem for file storage management (local and AWS S3 ready)
 
 ## Pro Features
 
