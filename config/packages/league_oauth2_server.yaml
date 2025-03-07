@@ -8,8 +8,8 @@ league_oauth2_server:
     resource_server:
         public_key: '%env(resolve:OAUTH_PUBLIC_KEY)%'
     scopes:
-        available: ['email', 'roles']
-        default: ['email', 'roles']
+        available: ['email', 'roles', 'profile']
+        default: ['email', 'roles', 'profile']
     client:
         classname: App\Entity\OAuth2Server\Client
     persistence:

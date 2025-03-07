@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\EventSubscriber\OAuth2Server;
 
-use App\Entity\User;
+use App\Entity\User\User;
 use League\Bundle\OAuth2ServerBundle\Event\AuthorizationRequestResolveEvent;
 use League\Bundle\OAuth2ServerBundle\OAuth2Events;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

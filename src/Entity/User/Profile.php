@@ -9,6 +9,7 @@ use App\Repository\User\ProfileRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProfileRepository::class)]
@@ -19,6 +20,9 @@ class Profile
     use CommonProperties\Required\FirstNameLastName;
     use TimestampableEntity;
 
+    #[Groups([
+        'user:profile:read',
+    ])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $phoneNumber = null;
 
@@ -34,6 +38,19 @@ class Profile
 
     #[ORM\Column(nullable: true)]
     private ?int $photoSize = null;
+
+    #[Groups([
+        'user:profile:read',
+    ])]
+    public ?string $photoUrl = null;
+
+    #[Groups([
+        'user:profile:read',
+    ])]
+    public function getFullName(): string
+    {
+        return $this->getFirstName().' '.$this->getLastName();
+    }
 
     public function getPhoneNumber(): ?string
     {

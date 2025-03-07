@@ -16,4 +16,4 @@ api_platform:
         flow: 'authorizationCode'
         tokenUrl: '/token'
         authorizationUrl: '/authorize'
-        scopes: {email: 'email'}
+        scopes: {email: 'email', roles: 'roles', profile: 'profile'}

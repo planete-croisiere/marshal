@@ -11,9 +11,15 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use League\Bundle\OAuth2ServerBundle\OAuth2Grants;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class ClientCrud extends AbstractCrudController
 {
+    public function __construct(
+        private ParameterBagInterface $params,
+    ) {
+    }
+
     public static function getEntityFqcn(): string
     {
         return Client::class;
@@ -21,6 +27,8 @@ class ClientCrud extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        $scopes = $this->params->get('league.oauth2_server.scopes.default');
+
         return [
             TextField::new('name'),
             TextField::new('identifier'),
@@ -29,7 +37,7 @@ class ClientCrud extends AbstractCrudController
                 ->hideOnDetail()
                 ->hideWhenCreating(),
             ChoiceField::new('scopeStrings')
-                ->setChoices(['email' => 'email',  'roles' => 'roles'])
+                ->setChoices(array_combine($scopes, $scopes))
                 ->allowMultipleChoices(),
             ChoiceField::new('grantStrings')
                 ->setChoices([
