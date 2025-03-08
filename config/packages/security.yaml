@@ -46,6 +46,8 @@ security:
                 clear_site_data:
                     - cookies
                     - storage
+            custom_authenticators:
+                - App\Security\OAuthClient\GithubAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
