@@ -15,6 +15,7 @@
   "Groups": "Groups",
   "Has Failure Output": "Has Failure Output",
   "Help": "Help",
+  "help.content": "You can drag & drop or copy / paste an image.",
   "help.meta_robots": "Default configuration is `index follow`.",
   "help.noarchive": "Prevents search engines from storing a cached copy of the page.",
   "help.nofollow": "Prevents search engines from following the links on the page.",
@@ -95,7 +96,8 @@
   "user_crud.action.send_login_link_email": "Send a login link",
   "Users": "Users",
   "Version": "Version number",
-  "vich_uploader.form_label.delete_confirm": "Delete photo?",
   "View Log Entries": "Show versions",
+  "View or preview": "View or preview",
+  "vich_uploader.form_label.delete_confirm": "Delete photo?",
   "warning-matrix": "Modifying a group disconnects all its members."
 }
