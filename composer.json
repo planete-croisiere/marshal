@@ -25,6 +25,7 @@
         "league/flysystem-bundle": "^3.4",
         "league/flysystem-local": "^3.29",
         "league/oauth2-github": "^3.1",
+        "league/oauth2-google": "^4.0",
         "league/oauth2-server-bundle": "^0.9.1",
         "nelmio/cors-bundle": "^2.5",
         "phpdocumentor/reflection-docblock": "^5.6.1",

@@ -48,6 +48,7 @@ security:
                     - storage
             custom_authenticators:
                 - App\Security\OAuthClient\GithubAuthenticator
+                - App\Security\OAuthClient\GoogleAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -58,10 +59,9 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/installation, roles: PUBLIC_ACCESS }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/(login|installation), roles: PUBLIC_ACCESS }
         - { path: ^/api, roles: ROLE_API }
+        - { path: ^/installation, roles: PUBLIC_ACCESS }
         - { path: ^/(login$|request-login-link$|forgot-password$|register$|reset-password), roles: PUBLIC_ACCESS }
         - { path: ^/(token$|.well-known/jwks.json), roles: PUBLIC_ACCESS }
         - { path: ^/authorize, roles: IS_AUTHENTICATED_REMEMBERED }
