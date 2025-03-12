@@ -23,6 +23,11 @@ class Profile
     #[Groups([
         'user:profile:read',
     ])]
+    public ?string $photoUrl = null;
+
+    #[Groups([
+        'user:profile:read',
+    ])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $phoneNumber = null;
 
@@ -38,11 +43,6 @@ class Profile
 
     #[ORM\Column(nullable: true)]
     private ?int $photoSize = null;
-
-    #[Groups([
-        'user:profile:read',
-    ])]
-    public ?string $photoUrl = null;
 
     #[Groups([
         'user:profile:read',
@@ -86,7 +86,7 @@ class Profile
         $this->photoFile = $photoFile;
 
         if (null !== $photoFile) {
-            $this->updatedAt = new \DateTimeImmutable();
+            $this->updatedAt = new \DateTime();
         }
 
         return $this;

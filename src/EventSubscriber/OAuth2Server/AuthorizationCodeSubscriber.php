@@ -26,6 +26,9 @@ class AuthorizationCodeSubscriber implements EventSubscriberInterface
         $event->resolveAuthorization($authorization);
     }
 
+    /**
+     * @return array<string, string>
+     */
     public static function getSubscribedEvents(): array
     {
         return [

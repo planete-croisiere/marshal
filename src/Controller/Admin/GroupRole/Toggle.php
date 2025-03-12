@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\RememberMeBadge;
 
-#[Route('/admin/group_role/toggle', name: 'admin_group_role_toggle', methods: ['POST'])]
 class Toggle extends AbstractController
 {
     public function __construct(
@@ -23,6 +22,7 @@ class Toggle extends AbstractController
     ) {
     }
 
+    #[Route('/admin/group_role/toggle', name: 'admin_group_role_toggle', methods: ['POST'])]
     public function __invoke(
         Request $request,
     ): Response {

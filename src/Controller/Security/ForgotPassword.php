@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/forgot-password', name: 'forgot_password')]
 class ForgotPassword extends AbstractController
 {
     public function __construct(
@@ -21,6 +20,7 @@ class ForgotPassword extends AbstractController
     ) {
     }
 
+    #[Route('/forgot-password', name: 'forgot_password')]
     public function __invoke(Request $request): Response
     {
         $requestPasswordForm = $this->createForm(RequestPasswordFormType::class);
@@ -54,8 +54,10 @@ class ForgotPassword extends AbstractController
         }
 
         return $this->render(
-            'security/forgot_password.html.twig', [
+            'security/forgot_password.html.twig',
+            [
                 'form' => $requestPasswordForm->createView(),
-            ]);
+            ]
+        );
     }
 }

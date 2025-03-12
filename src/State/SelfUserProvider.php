@@ -7,6 +7,7 @@ namespace App\State;
 use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\Request;
 
 class SelfUserProvider implements ProviderInterface
 {
@@ -15,8 +16,15 @@ class SelfUserProvider implements ProviderInterface
     ) {
     }
 
-    public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
-    {
+    /**
+     * @param array<string, mixed>                                                   $uriVariables
+     * @param array<string, mixed>|array{request?: Request, resource_class?: string} $context
+     */
+    public function provide(
+        Operation $operation,
+        array $uriVariables = [],
+        array $context = [],
+    ): object|array|null {
         return $this->security->getUser();
     }
 }

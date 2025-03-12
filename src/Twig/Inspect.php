@@ -9,7 +9,10 @@ use Twig\TwigFilter;
 
 class Inspect extends AbstractExtension
 {
-    public function getFilters()
+    /**
+     * @return array<TwigFilter>
+     */
+    public function getFilters(): array
     {
         return [
             new TwigFilter('inspect', [$this, 'inspect']),

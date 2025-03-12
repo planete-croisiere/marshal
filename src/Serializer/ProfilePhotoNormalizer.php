@@ -20,16 +20,25 @@ class ProfilePhotoNormalizer implements NormalizerInterface
     ) {
     }
 
-    public function normalize($object, ?string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
-    {
+    /**
+     * @param array<string, mixed> $context
+     */
+    public function normalize(
+        mixed $data,
+        ?string $format = null,
+        array $context = [],
+    ): array|string|int|float|bool|\ArrayObject|null {
         $context[self::ALREADY_CALLED] = true;
 
-        $object->photoUrl = $this->storage->resolveUri($object, 'photoFile');
+        $data->photoUrl = $this->storage->resolveUri($data, 'photoFile');
 
-        return $this->normalizer->normalize($object, $format, $context);
+        return $this->normalizer->normalize($data, $format, $context);
     }
 
-    public function supportsNormalization($data, ?string $format = null, array $context = []): bool
+    /**
+     * @param array<string, mixed> $context
+     */
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         if (isset($context[self::ALREADY_CALLED])) {
             return false;
@@ -38,6 +47,9 @@ class ProfilePhotoNormalizer implements NormalizerInterface
         return $data instanceof Profile;
     }
 
+    /**
+     * @return array<string, bool>
+     */
     public function getSupportedTypes(?string $format): array
     {
         return [

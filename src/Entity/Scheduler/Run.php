@@ -124,6 +124,9 @@ class Run
         return $this->failureOutput;
     }
 
+    /**
+     * @return array<string, mixed>|null
+     */
     public function getFailureOutputObject(): ?array
     {
         return $this->failureOutput ? unserialize($this->failureOutput) : null;

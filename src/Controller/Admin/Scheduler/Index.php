@@ -11,21 +11,27 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Scheduler\RecurringMessage;
 use Symfony\Component\Scheduler\ScheduleProviderInterface;
 
-#[Route('/admin/scheduler', name: 'admin_scheduler_index')]
-#[Template('admin/scheduler/index.html.twig')]
 class Index extends AbstractController
 {
+    /**
+     * @param iterable<ScheduleProviderInterface> $schedules
+     */
     public function __construct(
         #[AutowireIterator('scheduler.schedule_provider')]
         private iterable $schedules,
     ) {
     }
 
+    /**
+     * @return array<string, mixed>
+     */
+    #[Route('/admin/scheduler', name: 'admin_scheduler_index')]
+    #[Template('admin/scheduler/index.html.twig')]
     public function __invoke(): array
     {
         $scheduleMessages = [];
         /** @var ScheduleProviderInterface $schedule */
-        foreach ($this->schedules as $key => $schedule) {
+        foreach ($this->schedules as $schedule) {
             if ($schedule->getSchedule()->getRecurringMessages()) {
                 /** @var RecurringMessage $recurringMessage */
                 foreach ($schedule->getSchedule()->getRecurringMessages() as $recurringMessage) {

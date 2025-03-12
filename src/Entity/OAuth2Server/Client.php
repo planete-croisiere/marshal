@@ -23,6 +23,9 @@ class Client extends AbstractClient
         return $this->getName();
     }
 
+    /**
+     * @return array<string>
+     */
     public function getScopeStrings(): array
     {
         return array_map(static function (Scope $scope): string {
@@ -30,6 +33,9 @@ class Client extends AbstractClient
         }, $this->getScopes());
     }
 
+    /**
+     * @param array<string> $scopeStrings
+     */
     public function setScopeStrings(array $scopeStrings): self
     {
         $this->setScopes(...array_map(static function (string $scope): Scope {
@@ -39,6 +45,9 @@ class Client extends AbstractClient
         return $this;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getGrantStrings(): array
     {
         return array_map(static function (Grant $grant): string {
@@ -46,6 +55,9 @@ class Client extends AbstractClient
         }, $this->getGrants());
     }
 
+    /**
+     * @param array<string> $grantStrings
+     */
     public function setGrantStrings(array $grantStrings): self
     {
         $this->setGrants(...array_map(static function (string $grant): Grant {
@@ -55,6 +67,9 @@ class Client extends AbstractClient
         return $this;
     }
 
+    /**
+     * @return array<string>
+     */
     public function getRedirectUriStrings(): array
     {
         return array_map(static function (RedirectUri $redirectUri): string {
@@ -62,6 +77,9 @@ class Client extends AbstractClient
         }, $this->getRedirectUris());
     }
 
+    /**
+     * @param array<string> $redirectUriStrings
+     */
     public function setRedirectUriStrings(array $redirectUriStrings): self
     {
         $this->setRedirectUris(...array_map(static function (string $redirectUri): RedirectUri {

@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 abstract class AbstractConnect extends AbstractController
 {
+    /** @var array<string> */
     protected array $scopes = [];
 
     public function __construct(
@@ -20,6 +21,6 @@ abstract class AbstractConnect extends AbstractController
     public function __invoke(string $service): RedirectResponse
     {
         return $this->clientRegistry->getClient($service)
-            ->redirect($this->scopes);
+            ->redirect($this->scopes, []);
     }
 }

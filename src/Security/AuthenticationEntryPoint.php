@@ -22,7 +22,8 @@ class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
         // If the request is on /authorize Oauth path, redirect to the login page
         if ('/authorize' === $request->getPathInfo()) {
             return new RedirectResponse(
-                $this->router->generate('login',
+                $this->router->generate(
+                    'login',
                     [
                         '_target_path' => $request->query->get('redirect_uri'),
                     ],

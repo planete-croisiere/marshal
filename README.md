@@ -39,12 +39,12 @@ If you want to change the domain name, you can edit the `.symfony.local.yaml` fi
 ## Pro Features
 
 - Scheduler dashboard and logs : list configured recurring messages and display logs
-- Complete user management and security features : 
-  - Login form with password
-  - Login with OAuth clients (Google and Github are already installed)
-  - Profile with photo 
-  - Permissions matrix for the management of the user's rights
-  - Reset password by email
+- Complete user management and security features :
+    - Login form with password
+    - Login with OAuth clients (Google and Github are already installed)
+    - Profile with photo
+    - Permissions matrix for the management of the user's rights
+    - Reset password by email
 - OAuth2 Server for authenticated registered users and by applications/clients via OAuth2 grant types (password, client credentials, authorization code, refresh token)
 
 ## Technical stack

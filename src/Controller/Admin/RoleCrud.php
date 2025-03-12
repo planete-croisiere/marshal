@@ -51,10 +51,11 @@ class RoleCrud extends AbstractCrudController
             ->createAsGlobalAction();
 
         $roleCategoriesCrudAction = Action::new('roleCategories', 'Categories', 'fa fa-gear')
-            ->linkToUrl($this->adminUrlGenerator
-                ->setController(RoleCategoryCrud::class)
-                ->setAction(Action::INDEX)
-                ->generateUrl()
+            ->linkToUrl(
+                $this->adminUrlGenerator
+                    ->setController(RoleCategoryCrud::class)
+                    ->setAction(Action::INDEX)
+                    ->generateUrl()
             )
             ->createAsGlobalAction();
 

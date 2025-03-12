@@ -12,6 +12,9 @@ use Symfony\Component\Scheduler\ScheduleProviderInterface;
 
 class Handler
 {
+    /**
+     * @param iterable<ScheduleProviderInterface> $schedules
+     */
     public function __construct(
         #[AutowireIterator('scheduler.schedule_provider')]
         private iterable $schedules,

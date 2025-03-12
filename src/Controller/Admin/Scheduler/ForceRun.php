@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/admin/scheduler/force-run/{recurringMessageId}', name: 'admin_scheduler_force_run')]
 class ForceRun extends AbstractController
 {
     public function __construct(
@@ -17,6 +16,7 @@ class ForceRun extends AbstractController
     ) {
     }
 
+    #[Route('/admin/scheduler/force-run/{recurringMessageId}', name: 'admin_scheduler_force_run')]
     public function __invoke(string $recurringMessageId): RedirectResponse
     {
         if ($this->handler->forceRun($recurringMessageId)) {

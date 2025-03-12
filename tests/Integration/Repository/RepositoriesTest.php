@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration\Repository;
 
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Exception\NotNullConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -19,6 +20,7 @@ class RepositoriesTest extends KernelTestCase
     public function testSaveFindAndRemoveMethods(ClassMetadata $classMetadata): void
     {
         $entity = $classMetadata->newInstance();
+        /** @var ServiceEntityRepository $repository */
         $repository = static::getContainer()->get(EntityManagerInterface::class)
             ->getRepository($entity::class);
 
@@ -28,6 +30,7 @@ class RepositoriesTest extends KernelTestCase
                 $repository->find($entity->getId());
                 $this->assertSame($entity, $repository->find($entity->getId()));
 
+                /* @phpstan-ignore method.notFound */
                 $repository->remove($entity);
 
                 return;

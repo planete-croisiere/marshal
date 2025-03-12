@@ -8,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('.well-known/jwks.json', methods: ['GET'])]
 class Jwks extends AbstractController
 {
     public function __construct(
@@ -16,6 +15,7 @@ class Jwks extends AbstractController
     ) {
     }
 
+    #[Route('.well-known/jwks.json', methods: ['GET'])]
     public function __invoke(): JsonResponse
     {
         // Load the public key from the filesystem and use OpenSSL to parse it.

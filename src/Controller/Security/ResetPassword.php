@@ -16,7 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\RememberMeBadge;
 use Symfony\Component\Validator\Constraints\PasswordStrength;
 
-#[Route('/reset-password/{token}', name: 'reset_password')]
 class ResetPassword extends AbstractController
 {
     public function __construct(
@@ -25,8 +24,10 @@ class ResetPassword extends AbstractController
     ) {
     }
 
+    #[Route('/reset-password/{token}', name: 'reset_password')]
     public function __invoke(
-        #[MapEntity(mapping: ['token' => 'token'])] RequestPassword $requestPassword,
+        #[MapEntity(mapping: ['token' => 'token'])]
+        RequestPassword $requestPassword,
         Request $request,
     ): Response {
         if ($requestPassword->getExpireAt() < new \DateTime()) {

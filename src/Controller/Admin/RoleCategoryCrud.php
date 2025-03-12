@@ -8,6 +8,7 @@ use App\Entity\User\RoleCategory;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
@@ -33,6 +34,9 @@ class RoleCategoryCrud extends AbstractCrudController
             ->setDefaultSort(['name' => 'ASC']);
     }
 
+    /**
+     * @return iterable<FieldInterface>
+     */
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -50,10 +54,11 @@ class RoleCategoryCrud extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         $rolesCrudAction = Action::new('roles', 'Roles', 'fa fa-tags')
-            ->linkToUrl($this->adminUrlGenerator
-                ->setController(RoleCrud::class)
-                ->setAction(Action::INDEX)
-                ->generateUrl()
+            ->linkToUrl(
+                $this->adminUrlGenerator
+                    ->setController(RoleCrud::class)
+                    ->setAction(Action::INDEX)
+                    ->generateUrl()
             )
             ->createAsGlobalAction();
 

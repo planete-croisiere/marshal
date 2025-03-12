@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin\OAuth2Server;
 
 use App\Entity\OAuth2Server\Client;
+use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -25,6 +26,9 @@ class ClientCrud extends AbstractCrudController
         return Client::class;
     }
 
+    /**
+     * @return iterable<FieldInterface>
+     */
     public function configureFields(string $pageName): iterable
     {
         $scopes = $this->params->get('league.oauth2_server.scopes.default');
@@ -51,7 +55,7 @@ class ClientCrud extends AbstractCrudController
         ];
     }
 
-    public function createEntity(string $entityFqcn)
+    public function createEntity(string $entityFqcn): Client
     {
         return new $entityFqcn(
             '',

@@ -8,6 +8,7 @@ use App\Entity\User\User;
 use App\Repository\User\UserRepository;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
+use League\OAuth2\Client\Provider\GoogleUser;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,6 +45,7 @@ class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationE
             new UserBadge(
                 $accessToken->getToken(),
                 function () use ($accessToken, $client) {
+                    /** @var GoogleUser $fetchUser */
                     $fetchUser = $client->fetchUserFromToken($accessToken);
 
                     $existingUser = $this->userRepository->findOneBy(['email' => $fetchUser->getEmail()]);
@@ -67,7 +69,8 @@ class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationE
         TokenInterface $token,
         string $firewallName,
     ): ?Response {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+        $targetPath = $this->getTargetPath($request->getSession(), $firewallName);
+        if ($targetPath) {
             return new RedirectResponse($targetPath);
         }
 
@@ -78,6 +81,7 @@ class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationE
         Request $request,
         AuthenticationException $exception,
     ): ?Response {
+        /* @phpstan-ignore method.notFound */
         $request->getSession()->getFlashBag()->add(
             'error',
             'Authentication failed ('.$exception->getMessage().')',

@@ -10,10 +10,13 @@ use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/admin/group-role/matrix', name: 'admin_group_role_matrix')]
-#[Template('admin/group-role/matrix.html.twig')]
 class Matrix extends AbstractController
 {
+    /**
+     * @return array<string, mixed>
+     */
+    #[Route('/admin/group-role/matrix', name: 'admin_group_role_matrix')]
+    #[Template('admin/group-role/matrix.html.twig')]
     public function __invoke(
         GroupRepository $groupRepository,
         RoleRepository $roleRepository,

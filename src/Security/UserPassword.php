@@ -24,6 +24,6 @@ class UserPassword
         );
 
         $this->userRepository->updatePassword($requestPassword->getUser(), $hashedPassword);
-        $this->userRepository->remove($requestPassword, true);
+        $this->userRepository->remove($requestPassword);
     }
 }
