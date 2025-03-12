@@ -16,17 +16,13 @@ use Symfony\Component\Scheduler\Trigger\MessageProviderInterface;
 class HandlerTest extends TestCase
 {
     private function createHandlerWithMocks(
-        ?ScheduleProviderInterface $scheduleProvider = null,
         ?MessageBusInterface $bus = null,
-        ?RecurringMessage $recurringMessage = null,
-        ?MessageProviderInterface $provider = null,
-        ?Schedule $schedule = null,
     ): Handler {
-        $scheduleProvider = $scheduleProvider ?? $this->createMock(ScheduleProviderInterface::class);
+        $scheduleProvider = $this->createMock(ScheduleProviderInterface::class);
         $bus = $bus ?? $this->createMock(MessageBusInterface::class);
-        $recurringMessage = $recurringMessage ?? $this->createMock(RecurringMessage::class);
-        $provider = $provider ?? $this->createMock(MessageProviderInterface::class);
-        $schedule = $schedule ?? $this->createMock(Schedule::class);
+        $recurringMessage = $this->createMock(RecurringMessage::class);
+        $provider = $this->createMock(MessageProviderInterface::class);
+        $schedule = $this->createMock(Schedule::class);
 
         $recurringMessage->method('getId')->willReturn('id');
         $provider->method('getMessages')->willReturn([$this->createMock(Notification::class)]);
@@ -42,7 +38,7 @@ class HandlerTest extends TestCase
         $bus = $this->createMock(MessageBusInterface::class);
         $bus->expects(self::once())->method('dispatch');
 
-        $handler = $this->createHandlerWithMocks(bus: $bus);
+        $handler = $this->createHandlerWithMocks($bus);
 
         $this->assertTrue($handler->forceRun('id'));
     }
@@ -59,7 +55,7 @@ class HandlerTest extends TestCase
         $bus = $this->createMock(MessageBusInterface::class);
         $bus->expects(self::once())->method('dispatch')->willThrowException(new \Exception());
 
-        $handler = $this->createHandlerWithMocks(bus: $bus);
+        $handler = $this->createHandlerWithMocks($bus);
 
         $this->assertFalse($handler->forceRun('id'));
     }
