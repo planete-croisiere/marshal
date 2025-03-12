@@ -126,6 +126,7 @@
         }
     },
     "require-dev": {
+        "dg/bypass-finals": "^1.9",
         "nunomaduro/phpinsights": "^2.12",
         "phpro/grumphp": "^2.11",
         "phpstan/extension-installer": "^1.4.3",

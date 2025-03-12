@@ -1,0 +1,66 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Tests\Unit\Scheduler;
+
+use App\Scheduler\Handler;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Notifier\Notification\Notification;
+use Symfony\Component\Scheduler\RecurringMessage;
+use Symfony\Component\Scheduler\Schedule;
+use Symfony\Component\Scheduler\ScheduleProviderInterface;
+use Symfony\Component\Scheduler\Trigger\MessageProviderInterface;
+
+class HandlerTest extends TestCase
+{
+    private function createHandlerWithMocks(
+        ?ScheduleProviderInterface $scheduleProvider = null,
+        ?MessageBusInterface $bus = null,
+        ?RecurringMessage $recurringMessage = null,
+        ?MessageProviderInterface $provider = null,
+        ?Schedule $schedule = null,
+    ): Handler {
+        $scheduleProvider = $scheduleProvider ?? $this->createMock(ScheduleProviderInterface::class);
+        $bus = $bus ?? $this->createMock(MessageBusInterface::class);
+        $recurringMessage = $recurringMessage ?? $this->createMock(RecurringMessage::class);
+        $provider = $provider ?? $this->createMock(MessageProviderInterface::class);
+        $schedule = $schedule ?? $this->createMock(Schedule::class);
+
+        $recurringMessage->method('getId')->willReturn('id');
+        $provider->method('getMessages')->willReturn([$this->createMock(Notification::class)]);
+        $recurringMessage->method('getProvider')->willReturn($provider);
+        $schedule->method('getRecurringMessages')->willReturn([$recurringMessage]);
+        $scheduleProvider->method('getSchedule')->willReturn($schedule);
+
+        return new Handler([$scheduleProvider], $bus);
+    }
+
+    public function testForceRun(): void
+    {
+        $bus = $this->createMock(MessageBusInterface::class);
+        $bus->expects(self::once())->method('dispatch');
+
+        $handler = $this->createHandlerWithMocks(bus: $bus);
+
+        $this->assertTrue($handler->forceRun('id'));
+    }
+
+    public function testFailedForceRun(): void
+    {
+        $handler = new Handler([], $this->createMock(MessageBusInterface::class));
+
+        $this->assertFalse($handler->forceRun('id'));
+    }
+
+    public function testForceRunWithException(): void
+    {
+        $bus = $this->createMock(MessageBusInterface::class);
+        $bus->expects(self::once())->method('dispatch')->willThrowException(new \Exception());
+
+        $handler = $this->createHandlerWithMocks(bus: $bus);
+
+        $this->assertFalse($handler->forceRun('id'));
+    }
+}

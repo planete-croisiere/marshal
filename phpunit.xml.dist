@@ -29,6 +29,8 @@
         </include>
         <exclude>
             <directory>src/DataFixtures</directory>
+            <file>src/MessageHandler/ExampleHandler.php</file>
+            <file>src/Scheduler/Example.php</file>
         </exclude>
         <report>
             <clover outputFile="output/clover.xml" />
