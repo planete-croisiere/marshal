@@ -31,15 +31,23 @@ class Step2
             ['--group' => [AppFixtures::GROUP_INSTALL], '--no-interaction' => true],
         );
 
-        try {
-            $this->parameterRepository->findOneBy(['key' => 'MAILER_SENDER']);
-        } catch (\Exception) {
+        return $this->checkIfParamExist();
+    }
+
+    public function checkIfParamExist(): bool
+    {
+        if (!$this->parameterRepository->findOneBy(['key' => 'MAILER_SENDER'])) {
             return false;
         }
 
         return true;
     }
 
+    /**
+     * @param array<string, mixed> $options
+     *
+     * @throws \Exception
+     */
     private function runCommand(string $command, array $options = []): void
     {
         $application = new Application($this->kernel);

@@ -1,5 +1,7 @@
 # Fastfony Pro : pragmatic boilerplate and starter kit for fastly develop a project or launch a SaaS idea with Symfony 7
 
+<a href="https://github.com/fastfony/fastfony/actions/workflows/test.yaml"><img src="https://github.com/fastfony/fastfony/actions/workflows/test.yaml/badge.svg" alt="Unit & Functional Tests"></a>
+
 ## Getting Started
 
 1. If not already, [install PHP](https://www.php.net/manual/en/install.php), [install Composer](https://getcomposer.org) [install Symfony CLI](https://symfony.com/download), [install Node](https://nodejs.org/en/download), [install Docker Compose](https://docs.docker.com/compose/install/) and [install Taskfile](https://taskfile.dev/installation/)
@@ -16,7 +18,12 @@ If you want to change the domain name, you can edit the `.symfony.local.yaml` fi
 
 ## Execute tests
 
-- Run `task tests`
+- Run `task tests` or `task coverage`
+
+## Execute analytics
+
+- Run `task phpstan` for PHPStan
+- Run `task phpinsights` for PHPInsights
 
 ## Features
 
@@ -29,17 +36,28 @@ If you want to change the domain name, you can edit the `.symfony.local.yaml` fi
 - Users management with Profile with photo (and Groups, Roles, Role Categories)
 - OAuth2 Server for the registered users and by applications/clients
 - Settings panel
-- Toasts notifications (flash messages from Symfony and others with [vue-toastification](https://vue-toastification.maronato.dev/))
 - DaisyUI themes chooser
-- API Platform 4
-- EasyAdmin (with Bootstrap 5) and CRUD controllers for : Parameters, Parameter categories etc...
-- Webpack Encore, Vue.js 3, Tailwind CSS 4 & DaisyUI 5
-- Taskfile for easy install & start commands (just `task start` and develop)
-- Flysystem for file storage management (local and AWS S3 ready)
+- Toasts notifications (flash messages from Symfony and others with [vue-toastification](https://vue-toastification.maronato.dev/))
+- CRUD controllers for : Parameters, Parameter categories etc...
 
 ## Pro Features
 
 - Scheduler dashboard and logs : list configured recurring messages and display logs
+
+## Technical stack
+
+- Symfony 7.2
+- API Platform 4.1
+- EasyAdmin 4 (with Bootstrap 5)
+- Vue.js 3 & Bootstrap 5 for EasyAdmin & Admin
+- Vue.js 3 & Tailwind CSS 4 & DaisyUI 5 for Front (and you can use also React!)
+- Webpack Encore
+- Taskfile for easy install & start commands (just `task start` and develop)
+- Flysystem for file storage management (local and AWS S3 ready)
+- GrumPHP for manage pre-hook commit
+- PHPUnit and its unit and functional tests
+- PHPStan (level 5, [symfony simplify rules](https://github.com/symplify/phpstan-rules) and [symfony extension](https://github.com/phpstan/phpstan-symfony))
+- PHP Insights
 
 ## Docs
 

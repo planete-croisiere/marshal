@@ -6,10 +6,10 @@ tasks:
         cmds:
             - task: vendor
             - task: node_modules
-            - symfony console doctrine:database:drop --force --env=dev
-            - symfony console doctrine:database:create --env=dev
-            - symfony console doctrine:schema:create --env=dev
-            - symfony console doctrine:fixtures:load --no-interaction --env=dev
+            - bin/console doctrine:database:drop --force --env=dev
+            - bin/console doctrine:database:create --env=dev
+            - bin/console doctrine:schema:create --env=dev
+            - bin/console doctrine:fixtures:load --no-interaction --env=dev
 
     oauth2-server-init:
         desc: Generate private and public keys for OAuth2 Server
@@ -39,12 +39,12 @@ tasks:
         cmds:
             - task: vendor
             - task: node_modules
-            - symfony console doctrine:database:drop --force --env=test
-            - symfony console doctrine:database:create --env=test
-            - symfony console doctrine:schema:create --env=test
-            - symfony console doctrine:fixtures:load --no-interaction --env=test
-            - symfony console cache:clear --env=test
-            - symfony console cache:warmup --env=test
+            - bin/console doctrine:database:drop --force --env=test
+            - bin/console doctrine:database:create --env=test
+            - bin/console doctrine:schema:create --env=test
+            - bin/console doctrine:fixtures:load --group=test --no-interaction --env=test
+            - bin/console cache:clear --env=test
+            - bin/console cache:warmup --env=test
 
     start:
         desc: Start the development server
@@ -52,7 +52,7 @@ tasks:
             - task: vendor
             - task: node_modules
             - chmod -R 777 public/uploads/
-            - symfony console doctrine:schema:update --force  --env=dev
+            - bin/console doctrine:schema:update --force  --env=dev
             - symfony proxy:start
             - symfony server:start -d
 
@@ -72,4 +72,14 @@ tasks:
         desc: Run tests with coverage (required Xdebug)
         cmds:
             - task: setup_tests
-            - symfony php -dpcov.enabled=1 bin/phpunit --coverage-html=docs/coverage
+            - XDEBUG_MODE=coverage php bin/phpunit --coverage-html=docs/coverage
+
+    phpstan:
+        desc: Run PHPStan
+        cmds:
+            - vendor/bin/phpstan analyse src tests
+                
+    phpinsights:
+        desc: Run PHP Insights
+        cmds:
+            - vendor/bin/phpinsights

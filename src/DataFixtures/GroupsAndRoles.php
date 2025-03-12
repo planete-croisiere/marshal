@@ -19,9 +19,15 @@ class GroupsAndRoles extends Fixture implements FixtureGroupInterface
         $manager->flush();
     }
 
+    /**
+     * @return array<string>
+     */
     public static function getGroups(): array
     {
-        return [AppFixtures::GROUP_INSTALL];
+        return [
+            AppFixtures::GROUP_INSTALL,
+            AppFixtures::GROUP_TEST,
+        ];
     }
 
     private function createGroupsAndRoles(ObjectManager $manager): void

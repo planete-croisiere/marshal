@@ -10,6 +10,9 @@ use Twig\TwigFunction;
 
 class EditorjsToHtmlExtension extends AbstractExtension
 {
+    /**
+     * @return array<TwigFunction>
+     */
     public function getFunctions(): array
     {
         return [
@@ -19,6 +22,6 @@ class EditorjsToHtmlExtension extends AbstractExtension
 
     public function editorjsToHtml(string $json): string
     {
-        return Parser::parse($json)->toHtml();
+        return trim(Parser::parse($json)->toHtml());
     }
 }

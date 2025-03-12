@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Page\Page;
 use App\Entity\Page\PageLogEntry;
+use App\Repository\Page\PageLogEntryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminAction;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -13,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
+use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -65,6 +67,9 @@ class PageLogEntryCrud extends AbstractCrudController
         ;
     }
 
+    /**
+     * @return iterable<FieldInterface>
+     */
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -81,13 +86,15 @@ class PageLogEntryCrud extends AbstractCrudController
         ;
     }
 
-    #[AdminAction(routePath: '/revert', routeName: 'revertToPreviousVersion', methods: ['GET'])]
+    #[AdminAction(routePath: '/revert/{entityId}', routeName: 'revertToPreviousVersion', methods: ['GET'])]
     public function revertToPreviousVersion(AdminContext $context): RedirectResponse
     {
         $pageLogEntry = $context->getEntity()->getInstance();
         $page = $this->entityManager->find(Page::class, $pageLogEntry->getObjectId());
         if ($page) {
-            $this->entityManager->getRepository(PageLogEntry::class)->revert($page, $pageLogEntry->getVersion());
+            /** @var PageLogEntryRepository $pageLogEntryRepository */
+            $pageLogEntryRepository = $this->entityManager->getRepository(PageLogEntry::class);
+            $pageLogEntryRepository->revert($page, $pageLogEntry->getVersion());
             $this->entityManager->flush();
             $this->addFlash('success', 'flash.revert_to_previous_version.success');
 

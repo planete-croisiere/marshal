@@ -28,7 +28,7 @@ class Profile
 
     #[ORM\OneToOne(inversedBy: 'profile', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
+    private User $user;
 
     #[Vich\UploadableField(mapping: 'profile_photo', fileNameProperty: 'photo', size: 'photoSize')]
     private ?File $photoFile = null;
@@ -64,7 +64,7 @@ class Profile
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getUser(): User
     {
         return $this->user;
     }

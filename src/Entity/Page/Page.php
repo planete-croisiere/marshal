@@ -35,6 +35,9 @@ class Page
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $slug = null;
 
+    /**
+     * @var array<string, string>|null
+     */
     #[Gedmo\Versioned]
     #[ORM\Column(nullable: true)]
     private ?array $content = null;
@@ -47,13 +50,16 @@ class Page
         return $this->title;
     }
 
-    public function setTitle(string $title): static
+    public function setTitle(?string $title): static
     {
         $this->title = $title;
 
         return $this;
     }
 
+    /**
+     * @return array<string, string>|null
+     */
     public function getContent(): ?array
     {
         return $this->content;

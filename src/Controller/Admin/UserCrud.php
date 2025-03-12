@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
+use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -40,6 +41,9 @@ class UserCrud extends AbstractCrudController
             ->setDefaultSort(['email' => 'ASC']);
     }
 
+    /**
+     * @return iterable<FieldInterface>
+     */
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -84,13 +88,14 @@ class UserCrud extends AbstractCrudController
     {
         $sendLoginLinkAction = Action::new('sendLoginLinkEmail', 'user_crud.action.send_login_link_email')
             ->linkToCrudAction('sendLoginLinkEmail')
-            ->displayIf(fn ($entity) => $entity->isEnabled());
+            ->displayIf(static fn ($entity) => $entity->isEnabled());
 
         $groupsCrudAction = Action::new('groups', 'Groups', 'fa fa-users')
-            ->linkToUrl($this->adminUrlGenerator
-                ->setController(GroupCrud::class)
-                ->setAction(Action::INDEX)
-                ->generateUrl()
+            ->linkToUrl(
+                $this->adminUrlGenerator
+                    ->setController(GroupCrud::class)
+                    ->setAction(Action::INDEX)
+                    ->generateUrl()
             )
             ->createAsGlobalAction();
 
@@ -101,7 +106,7 @@ class UserCrud extends AbstractCrudController
         ;
     }
 
-    #[AdminAction(routePath: '/send-login-link', routeName: 'send_login_link')]
+    #[AdminAction(routePath: '/{entityId}/send-login-link', routeName: 'send_login_link')]
     public function sendLoginLinkEmail(
         AdminContext $adminContext,
         LoginLink $loginLink,

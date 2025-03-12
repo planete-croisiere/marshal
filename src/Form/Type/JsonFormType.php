@@ -13,19 +13,22 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class JsonType extends AbstractType
+class JsonFormType extends AbstractType
 {
     public function __construct(
         private readonly ValidatorInterface $validator,
     ) {
     }
 
+    /**
+     * @param array<string, mixed> $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->addModelTransformer(
                 new CallbackTransformer(
-                    function ($value): string {
+                    static function ($value): string {
                         if (null === $value) {
                             return '';
                         }

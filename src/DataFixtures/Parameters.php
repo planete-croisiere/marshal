@@ -35,16 +35,23 @@ class Parameters extends Fixture implements FixtureGroupInterface
 
     public function load(ObjectManager $manager): void
     {
+        $this->createParameterCategories($manager);
         $this->createParameters($manager);
         $manager->flush();
     }
 
+    /**
+     * @return array<string>
+     */
     public static function getGroups(): array
     {
-        return [AppFixtures::GROUP_INSTALL];
+        return [
+            AppFixtures::GROUP_INSTALL,
+            AppFixtures::GROUP_TEST,
+        ];
     }
 
-    private function createParameters(ObjectManager $manager): void
+    private function createParameterCategories(ObjectManager $manager): void
     {
         foreach (self::PARAMETER_CATEGORIES as $category) {
             $parameterCategory = (new ParameterCategory())
@@ -55,10 +62,14 @@ class Parameters extends Fixture implements FixtureGroupInterface
                 $parameterCategory
             );
         }
+    }
 
+    private function createParameters(ObjectManager $manager): void
+    {
+        $domain = $this->requestStack->getMainRequest()?->getHost() ?? 'domain.tld';
         $parameters = [
             'MAILER_SENDER' => [
-                'value' => 'noreply@'.$this->requestStack->getMainRequest()->getHost(),
+                'value' => 'noreply@'.$domain,
                 'type' => 'email',
                 'label' => 'Sender email address',
                 'help' => 'This e-mail must be authorize by server configure on MAILER_DSN in .env.local',
@@ -95,7 +106,7 @@ class Parameters extends Fixture implements FixtureGroupInterface
                 ),
             ],
             'BACKGROUND_LOGIN_IMAGE_URL' => [
-                'value' => 'https://images.unsplash.com/photo-1496917756835-20cb06e75b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80',
+                'value' => 'https://images.unsplash.com/photo-1496917756835-20cb06e75b4e',
                 'type' => 'url',
                 'label' => 'Background Image URL',
                 'help' => 'An URL with https://',
@@ -144,15 +155,9 @@ class Parameters extends Fixture implements FixtureGroupInterface
                 ->setType($values['type'])
                 ->setLabel($values['label'])
                 ->setHelp($values['help'] ?? null)
+                ->setValue($values['value'] ?? null)
+                ->setCategory($values['category'] ?? null)
             ;
-
-            if (isset($values['value'])) {
-                $parameter->setValue($values['value']);
-            }
-
-            if (isset($values['category'])) {
-                $parameter->setCategory($values['category']);
-            }
 
             $manager->persist($parameter);
         }

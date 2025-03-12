@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 
 use App\Admin\Field\VichImageField;
 use App\Entity\User\Profile;
+use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
@@ -18,6 +19,9 @@ class ProfileCrud extends AbstractCrudController
         return Profile::class;
     }
 
+    /**
+     * @return iterable<FieldInterface>
+     */
     public function configureFields(string $pageName): iterable
     {
         return [
