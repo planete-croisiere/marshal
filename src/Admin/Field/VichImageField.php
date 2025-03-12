@@ -13,7 +13,7 @@ class VichImageField implements FieldInterface
 {
     use FieldTrait;
 
-    public static function new(string $propertyName, ?string $label = null): static
+    public static function new(string $propertyName, ?string $label = null): self
     {
         return (new self())
             ->setProperty($propertyName)
