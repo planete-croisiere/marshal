@@ -1,6 +1,7 @@
 # Fastfony Pro : pragmatic boilerplate and starter kit for fastly develop a project or launch a SaaS idea with Symfony 7
 
 <a href="https://github.com/fastfony/fastfony-pro/actions/workflows/test.yaml"><img src="https://github.com/fastfony/fastfony-pro/actions/workflows/test.yaml/badge.svg" alt="Unit & Functional Tests"></a>
+[![Test Coverage](https://raw.githubusercontent.com/fastfony/fastfony-pro/refs/heads/badges/coverage.svg)](https://github.com/fastfony/fastfony-pro)
 
 ## Getting Started
 
