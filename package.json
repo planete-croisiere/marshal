@@ -55,6 +55,7 @@
     "@tailwindcss/postcss": "^4.0.4",
     "@vue/eslint-config-prettier": "^10.2.0",
     "axios": "^1.7.9",
+    "esbuild": "^0.25.1",
     "pinia": "^3.0.1",
     "postcss": "^8.5.1",
     "postcss-loader": "^8.1.1",
