@@ -45,17 +45,27 @@ class NoErrorOnSimpleRouteTest extends WebTestCase
 
     private function isSimpleRoute(string $routeName, Route $route): bool
     {
-        if (\count($route->getMethods()) > 1) {
+        if (\count($route->getMethods()) > 1 || !$this->hasGetMethod($route)) {
             return false;
         }
 
-        if (false !== stripos($route->getPath(), '}')
-            || false !== stripos($routeName, 'autocomplete')
-            || false !== stripos($routeName, 'batch')
+        // Exclude routes
+        if (false !== stripos($route->getPath(), '}') // Routes with parameters
+            || false !== stripos($routeName, '_api_') // API routes
+            || false !== stripos($routeName, 'autocomplete') // Autocomplete Easyadmin routes
+            || false !== stripos($routeName, 'batch') // Autocomplete Easyadmin routes
+            || false !== stripos($routeName, 'oauth2') // OAuth2 routes
+            || false !== stripos($routeName, 'connect') // OAuth2 connect & check routes
         ) {
             return false;
         }
 
         return true;
+    }
+
+    private function hasGetMethod(Route $route): bool
+    {
+        return (1 === \count($route->getMethods()) && \in_array('GET', $route->getMethods(), true))
+            || 0 === \count($route->getMethods()); // No method defined 'ANY'
     }
 }

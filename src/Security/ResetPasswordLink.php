@@ -15,8 +15,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ResetPasswordLink
 {
-    private const LIFETIME = 300;
-
     public function __construct(
         private readonly MailerInterface $mailer,
         private readonly RequestPasswordRepository $requestPasswordRepository,
@@ -30,7 +28,7 @@ class ResetPasswordLink
      */
     public function send(User $user): bool
     {
-        $requestPassword = (new RequestPassword(self::LIFETIME))
+        $requestPassword = (new RequestPassword())
             ->setUser($user);
 
         $this->requestPasswordRepository->save($requestPassword);

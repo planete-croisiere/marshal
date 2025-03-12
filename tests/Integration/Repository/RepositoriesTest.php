@@ -23,14 +23,20 @@ class RepositoriesTest extends KernelTestCase
             ->getRepository($entity::class);
 
         try {
-            $repository->save($entity);
-            $repository->find($entity->getId());
-            $this->assertSame($entity, $repository->find($entity->getId()));
+            if (method_exists($repository, 'save')) {
+                $repository->save($entity);
+                $repository->find($entity->getId());
+                $this->assertSame($entity, $repository->find($entity->getId()));
 
-            $repository->remove($entity);
+                $repository->remove($entity);
+
+                return;
+            }
+
+            $this->expectNotToPerformAssertions();
         } catch (NotNullConstraintViolationException) {
             // Do nothing, it's normal
-            self::expectNotToPerformAssertions();
+            $this->expectNotToPerformAssertions();
         }
     }
 

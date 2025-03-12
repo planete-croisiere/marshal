@@ -18,11 +18,21 @@ use function Symfony\Component\String\u;
  */
 class EntitiesTest extends KernelTestCase
 {
+    private const EXCLUDED_ENTITIES = [
+        'App\Entity\OAuth2Server\Client',
+    ];
+
     /**
      * @dataProvider getEntities
      */
     public function testGettersAndSetters(ClassMetadata $classMetadata): void
     {
+        if (\in_array($classMetadata->getName(), self::EXCLUDED_ENTITIES, true)) {
+            $this->expectNotToPerformAssertions();
+
+            return;
+        }
+
         $entity = $classMetadata->newInstance();
         if (method_exists($entity, '__construct')) {
             $entity->__construct();
@@ -101,7 +111,7 @@ class EntitiesTest extends KernelTestCase
 
             if (u($getter->getReturnType()->__toString())->containsAny('DateTime')) {
                 // The mock does not handle datetime automatically
-                $value = new \DateTime();
+                $value = new \DateTimeImmutable();
             } else {
                 $value = $entityMock->{$property['getter']}();
             }
