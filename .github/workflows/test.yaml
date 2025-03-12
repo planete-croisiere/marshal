@@ -46,6 +46,9 @@ jobs:
             - name: Npm build
               run: npm run build
 
+            - name: Init OAuth2 server 
+              run: task oauth2-server-init
+              
             - name: Run PHPUnit with coverage
               run: task coverage
 
