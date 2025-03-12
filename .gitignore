@@ -37,6 +37,7 @@ assets/vue/controllers/Test.vue
 
 public/uploads/
 docs/coverage/
+output/
 
 ###> phpstan/phpstan ###
 phpstan.neon
