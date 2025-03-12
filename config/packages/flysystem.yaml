@@ -5,7 +5,7 @@ flysystem:
             adapter: 'local'
             options:
                 directory: '%kernel.project_dir%/var/storage/default'
-                
+
         profile_photo.storage:
             adapter: 'local'
             options:

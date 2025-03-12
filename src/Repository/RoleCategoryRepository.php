@@ -13,7 +13,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class RoleCategoryRepository extends ServiceEntityRepository
 {
-    use SaveAndRemoveMethodTrait;
+    use SaveAndRemoveMethod;
 
     public function __construct(ManagerRegistry $registry)
     {

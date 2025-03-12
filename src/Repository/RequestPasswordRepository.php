@@ -13,7 +13,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class RequestPasswordRepository extends ServiceEntityRepository
 {
-    use SaveAndRemoveMethodTrait;
+    use SaveAndRemoveMethod;
 
     public function __construct(ManagerRegistry $registry)
     {

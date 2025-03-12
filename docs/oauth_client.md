@@ -8,14 +8,15 @@ List of available libraries:
 https://github.com/knpuniversity/oauth2-client-bundle?tab=readme-ov-file#step-1-download-the-client-library
 
 For example:
+
 ```bash
 composer require league/oauth2-google
 ```
 
 ## 2. Create the specific OAuth controllers
 
-Create the `src/Controller/Security/OAuthClient/Provider/Check.php` and 
-`src/Controller/Security/OAuthClient/Provider/Connect.php` files, respectively extends 
+Create the `src/Controller/Security/OAuthClient/Provider/Check.php` and
+`src/Controller/Security/OAuthClient/Provider/Connect.php` files, respectively extends
 `src/Controller/Security/OAuthClient/AbstractCheck.php` and `src/Controller/Security/OAuthClient/AbstractConnect.php`.
 
 (replace `Provider` by the name of your OAuth provider)
@@ -60,7 +61,6 @@ class Connect extends AbstractConnect
     }
 }
 ```
-
 
 ## 3. Create the specific OAuth authenticator
 
@@ -180,8 +180,7 @@ security:
 
         main:
             #...
-            custom_authenticators:
-                ...
+            custom_authenticators: ...
                 - App\Security\OAuthClient\ProviderAuthenticator
 ```
 
@@ -203,12 +202,13 @@ knpu_oauth2_client:
             redirect_route: connect_provider_check
 ```
 
-## 7. Create your OAuth app on the provider 
+## 7. Create your OAuth app on the provider
 
 ## 8. Create two parameters in database via the interface:
 
 Go to : https://fastfony-pro.wip/admin/parameter-crud
 and create two parameters with the following names:
+
 - PROVIDER_CLIENT_ID
 - PROVIDER_CLIENT_SECRET
 

@@ -62,7 +62,10 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/api, roles: ROLE_API }
         - { path: ^/installation, roles: PUBLIC_ACCESS }
-        - { path: ^/(login$|request-login-link$|forgot-password$|register$|reset-password), roles: PUBLIC_ACCESS }
+        - {
+              path: ^/(login$|request-login-link$|forgot-password$|register$|reset-password),
+              roles: PUBLIC_ACCESS,
+          }
         - { path: ^/(token$|.well-known/jwks.json), roles: PUBLIC_ACCESS }
         - { path: ^/authorize, roles: IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/, roles: PUBLIC_ACCESS }
