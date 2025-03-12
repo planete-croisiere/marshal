@@ -78,7 +78,7 @@ tasks:
         desc: Run PHPStan
         cmds:
             - vendor/bin/phpstan analyse src tests
-
+                
     phpinsights:
         desc: Run PHP Insights
         cmds:
