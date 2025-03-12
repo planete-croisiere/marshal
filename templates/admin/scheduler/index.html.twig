@@ -1,17 +1,17 @@
-{% extends 'admin.html.twig' %}
+{% extends '@EasyAdmin/layout.html.twig' %}
 
 {% trans_default_domain 'admin' %}
 
-{% block main %}
-    <div class="prose mb-12">
-        <h1>{{ 'scheduler.title'|trans }}</h1>
-        <p class="text-base-content">
-            {{ 'scheduler.description'|trans|raw }}
-        </p>
-    </div>
+{% block content_title %}
+    {{ 'scheduler.title'|trans }}
+{% endblock %}
 
+{% block main %}
+    <p>
+        {{ 'scheduler.description'|trans|raw }}
+    </p>
     <div class="overflow-x-auto">
-        <table class="table table-zebra">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>

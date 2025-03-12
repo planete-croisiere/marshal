@@ -1,5 +1,5 @@
 <template>
-  <table class="min-w-full table table-sm">
+  <table class="table table-sm">
     <thead>
       <tr>
         <th scope="col">{{ $t('table.group-role-matrix') }}</th>
@@ -10,7 +10,7 @@
     </thead>
     <tbody>
       <template v-for="(roles, category) in rolesByCategory">
-        <tr v-if="'null' !== category" class="bg-base-200">
+        <tr v-if="'null' !== category" class="table-light">
           <th :colspan="groups.length + 1" scope="colgroup">{{ category }}</th>
         </tr>
         <tr v-for="role in roles">
@@ -18,7 +18,7 @@
           <td v-for="group in groups" :key="group.id">
             <input
               type="checkbox"
-              class="checkbox"
+              class="form-check-input"
               :checked="role.groups.includes(group.id)"
               @change="toggle(role, group, $event)"
             />

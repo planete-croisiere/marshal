@@ -25,6 +25,6 @@ class ForceRun extends AbstractController
             $this->addFlash('error', 'flash.scheduler.force_run.error');
         }
 
-        return $this->redirectToRoute('admin_scheduler_index');
+        return $this->redirectToRoute('admin', ['routeName' => 'admin_scheduler_index']);
     }
 }

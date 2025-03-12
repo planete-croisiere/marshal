@@ -28,13 +28,9 @@ If you want to change the domain name, you can edit the `.symfony.local.yaml` fi
 ## Features
 
 - Simple pages SEO friendly (front and backoffice)
-- Permissions matrix for the management of the user's rights
 - Register and received a login link by email
-- Reset password by email
 - Login form with email that send a login link by email
-- Login form with password
-- Users management with Profile with photo (and Groups, Roles, Role Categories)
-- OAuth2 Server for the registered users and by applications/clients
+- Users management with Profile (and Groups, Roles)
 - Settings panel
 - DaisyUI themes chooser
 - Toasts notifications (flash messages from Symfony and others with [vue-toastification](https://vue-toastification.maronato.dev/))
@@ -43,6 +39,13 @@ If you want to change the domain name, you can edit the `.symfony.local.yaml` fi
 ## Pro Features
 
 - Scheduler dashboard and logs : list configured recurring messages and display logs
+- Complete user management and security features : 
+  - Login form with password
+  - Login with OAuth clients (Google and Github are already installed)
+  - Profile with photo 
+  - Permissions matrix for the management of the user's rights
+  - Reset password by email
+- OAuth2 Server for authenticated registered users and by applications/clients via OAuth2 grant types (password, client credentials, authorization code, refresh token)
 
 ## Technical stack
 
