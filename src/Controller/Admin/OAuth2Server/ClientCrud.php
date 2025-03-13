@@ -14,7 +14,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use League\Bundle\OAuth2ServerBundle\OAuth2Grants;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_TECHNICAL')]
 class ClientCrud extends AbstractCrudController
 {
     public function __construct(

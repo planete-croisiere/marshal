@@ -7,7 +7,9 @@ namespace App\Controller\Admin\Parameter;
 use App\Entity\Parameter\ParameterCategory;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_TECHNICAL')]
 class ParameterCategoryCrud extends AbstractCrudController
 {
     public static function getEntityFqcn(): string

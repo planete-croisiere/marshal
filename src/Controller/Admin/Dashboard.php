@@ -63,14 +63,19 @@ class Dashboard extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('menu.dashboard', 'fa fa-home');
         yield MenuItem::linkToRoute('menu.group_role_matrix', 'fas fa-table', 'admin_group_role_matrix');
-        yield MenuItem::section('menu.oauth');
-        yield MenuItem::linkToCrud('menu.oauth.clients', 'fas fa-server', Client::class);
+        yield MenuItem::section('menu.oauth')
+            ->setPermission('ROLE_TECHNICAL');
+        yield MenuItem::linkToCrud('menu.oauth.clients', 'fas fa-server', Client::class)
+            ->setPermission('ROLE_TECHNICAL');
         yield MenuItem::section('menu.crud');
         yield MenuItem::linkToCrud('menu.crud.users', 'fas fa-users', User::class);
-        yield MenuItem::linkToCrud('menu.crud.pages', 'fas fa-file', Page::class);
-        yield MenuItem::linkToCrud('menu.crud.parameters', 'fas fa-gears', Parameter::class);
+        yield MenuItem::linkToCrud('menu.crud.pages', 'fas fa-file', Page::class)
+            ->setPermission('ROLE_TECHNICAL');
+        yield MenuItem::linkToCrud('menu.crud.parameters', 'fas fa-gears', Parameter::class)
+            ->setPermission('ROLE_TECHNICAL');
         yield MenuItem::section('---');
-        yield MenuItem::linkToRoute('menu.settings', 'fas fa-gear', 'admin_parameters');
+        yield MenuItem::linkToRoute('menu.settings', 'fas fa-gear', 'admin_parameters')
+            ->setPermission('ROLE_TECHNICAL');
         yield MenuItem::linkToRoute('menu.exit', 'fas fa-door-open', 'homepage');
     }
 }

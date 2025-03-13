@@ -7,7 +7,9 @@ namespace App\Controller\Admin\Parameter;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_TECHNICAL')]
 class Index extends AbstractController
 {
     /**
