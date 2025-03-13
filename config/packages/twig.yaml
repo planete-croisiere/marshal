@@ -6,7 +6,6 @@ twig:
         background_login_image_url: '%env(database:BACKGROUND_LOGIN_IMAGE_URL)%'
         registration_enabled: '%env(default:default_registration_enabled:bool:database:REGISTRATION_ENABLED)%'
     form_themes:
-        - 'form/custom_types.html.twig'
         - 'form/custom_errors.html.twig'
 
 when@test:
