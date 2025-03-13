@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1741886261">
-  <project timestamp="1741886261">
+<coverage generated="1741893197">
+  <project timestamp="1741893197">
     <file name="/home/runner/work/marshal/marshal/src/Admin/Field/Editorjs.php">
       <class name="App\Admin\Field\Editorjs" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="7" coveredelements="7"/>
@@ -44,7 +44,7 @@
     </file>
     <file name="/home/runner/work/marshal/marshal/src/Controller/Admin/Dashboard.php">
       <class name="App\Controller\Admin\Dashboard" namespace="global">
-        <metrics complexity="6" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="26" elements="32" coveredelements="32"/>
+        <metrics complexity="6" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="31" coveredelements="31"/>
       </class>
       <line num="24" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
       <line num="27" type="stmt" count="3"/>
@@ -77,8 +77,7 @@
       <line num="72" type="stmt" count="2"/>
       <line num="73" type="stmt" count="2"/>
       <line num="74" type="stmt" count="2"/>
-      <line num="75" type="stmt" count="2"/>
-      <metrics loc="78" ncloc="75" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="26" elements="32" coveredelements="32"/>
+      <metrics loc="77" ncloc="74" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="31" coveredelements="31"/>
     </file>
     <file name="/home/runner/work/marshal/marshal/src/Controller/Admin/GroupCrud.php">
       <class name="App\Controller\Admin\GroupCrud" namespace="global">
@@ -2359,6 +2358,6 @@
       <line num="25" type="stmt" count="2"/>
       <metrics loc="29" ncloc="29" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="8" coveredelements="8"/>
     </file>
-    <metrics files="103" loc="5544" ncloc="5201" classes="99" methods="357" coveredmethods="312" conditionals="0" coveredconditionals="0" statements="1383" coveredstatements="1190" elements="1740" coveredelements="1502"/>
+    <metrics files="103" loc="5543" ncloc="5200" classes="99" methods="357" coveredmethods="312" conditionals="0" coveredconditionals="0" statements="1382" coveredstatements="1189" elements="1739" coveredelements="1501"/>
   </project>
 </coverage>
