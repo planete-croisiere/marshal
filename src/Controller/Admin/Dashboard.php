@@ -62,7 +62,6 @@ class Dashboard extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('menu.dashboard', 'fa fa-home');
-        yield MenuItem::linkToRoute('menu.scheduler', 'fas fa-calendar-days', 'admin_scheduler_index');
         yield MenuItem::linkToRoute('menu.group_role_matrix', 'fas fa-table', 'admin_group_role_matrix');
         yield MenuItem::section('menu.oauth');
         yield MenuItem::linkToCrud('menu.oauth.clients', 'fas fa-server', Client::class);

@@ -83,7 +83,7 @@
   "scheduler.table.trigger": "Déclencheur",
   "scheduler.title": "Planificateur",
   "SEO": "SEO",
-  "Settings": "Paramètres",
+  "Settings": "Réglages",
   "settings.description": "Modifier la valeur des paramètres. Le mode de sauvegarde automatique est activé. Vous pouvez également en ajouter d'autres <a href=\"/admin/parameter-crud\">ici</a>.",
   "Slug": "Chemin URI",
   "Terminated": "Terminé",
