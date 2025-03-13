@@ -25,11 +25,14 @@ class Users extends Fixture implements FixtureGroupInterface
         $superAdminGroup = $manager->getRepository(Group::class)
             ->findOneBy(['name' => Group::SUPER_ADMIN_NAME]);
 
+        $technicianGroup = $manager->getRepository(Group::class)
+            ->findOneBy(['name' => 'Technicien']);
+
         $user = (new User())
             ->setEmail('superadmin@fastfony.com')
             ->setEnabled(true)
             ->addGroup($superAdminGroup)
-        ;
+            ->addGroup($technicianGroup);
 
         $manager->persist($user);
 

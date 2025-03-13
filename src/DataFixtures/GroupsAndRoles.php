@@ -46,6 +46,7 @@ class GroupsAndRoles extends Fixture implements FixtureGroupInterface
             'ROLE_CATALOG' => 'Accès au catalogue',
             'ROLE_FRONTOFFICE_ADMIN' => 'Administration',
             'ROLE_FRONTOFFICE_EDITOR' => 'Editeur',
+            'ROLE_TECHNICAL' => 'Technique',
         ];
 
         foreach ($roles as $key => $description) {
@@ -66,8 +67,9 @@ class GroupsAndRoles extends Fixture implements FixtureGroupInterface
                 $this->getReference('ROLE_ADMIN', Role::class),
                 $this->getReference('ROLE_SUPER_ADMIN', Role::class),
             ],
-            'Facilities in admin' => [
+            'Outillage dans Marshal' => [
                 $this->getReference('ROLE_ALLOWED_TO_SWITCH', Role::class),
+                $this->getReference('ROLE_TECHNICAL', Role::class),
             ],
             'Assembly-Station' => [
                 $this->getReference('ROLE_CRM_SELLER', Role::class),
@@ -154,6 +156,10 @@ class GroupsAndRoles extends Fixture implements FixtureGroupInterface
                 $this->getReference('ROLE_API', Role::class),
                 $this->getReference('ROLE_USER', Role::class),
                 $this->getReference('ROLE_CATALOG', Role::class),
+            ],
+            'Technicien' => [
+                $this->getReference('ROLE_ALLOWED_TO_SWITCH', Role::class),
+                $this->getReference('ROLE_TECHNICAL', Role::class),
             ],
         ];
 
