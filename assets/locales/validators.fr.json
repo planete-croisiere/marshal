@@ -1,0 +1,7 @@
+{
+  "Bad credentials.": "Mauvais identifiants.",
+  "The presented password is invalid.": "Mauvais identifiants.",
+  "The role name must start with 'ROLE_'.": "Le nom du rôle doit commencer par 'ROLE_'.",
+  "The string contains a syntax error and it is not encodable to JSON.": "La chaîne contient une erreur de syntaxe et ne peut pas être encodée en JSON.",
+  "There can only be one homepage.": "Il ne peut y avoir qu'une seule page d'accueil."
+}

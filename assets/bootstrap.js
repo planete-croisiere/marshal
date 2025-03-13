@@ -21,6 +21,7 @@ registerVueControllerComponents(
 /* Internationalisation */
 import { createI18n } from 'vue-i18n';
 import en from './locales/app.en.json';
+import fr from './locales/app.fr.json';
 
 /* Toast */
 import Toast from 'vue-toastification';
@@ -38,9 +39,9 @@ document.addEventListener('vue:before-mount', (event) => {
 
   const i18n = createI18n({
     legacy: false,
-    locale: 'en',
-    fallbackLocale: 'en',
-    messages: { en },
+    locale: 'fr',
+    fallbackLocale: 'fr',
+    messages: { fr },
   });
 
   app.use(i18n);

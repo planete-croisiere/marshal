@@ -16,14 +16,10 @@ class Parameters extends Fixture implements FixtureGroupInterface
     private const EMAIL_PARAMETER_CATEGORY = 'Email';
     private const COMPANY_PARAMETER_CATEGORY = 'Company';
     private const LOGIN_PARAMETER_CATEGORY = 'Login';
-    private const OAUTH_GITHUB_PARAMETER_CATEGORY = 'OAuth Github';
-    private const OAUTH_GOOGLE_PARAMETER_CATEGORY = 'OAuth Google';
     private const PARAMETER_CATEGORIES = [
         self::EMAIL_PARAMETER_CATEGORY,
         self::COMPANY_PARAMETER_CATEGORY,
         self::LOGIN_PARAMETER_CATEGORY,
-        self::OAUTH_GITHUB_PARAMETER_CATEGORY,
-        self::OAUTH_GOOGLE_PARAMETER_CATEGORY,
     ];
 
     private const PARAMETER_CATEGORY_REFERENCE_SUFFIX = '_PARAMETER_CATEGORY_REFERENCE';
@@ -79,7 +75,7 @@ class Parameters extends Fixture implements FixtureGroupInterface
                 ),
             ],
             'COMPANY_ICON_FILEPATH' => [
-                'value' => '/images/Fastfony-icon.png',
+                'value' => '/images/logo.webp',
                 'type' => 'text',
                 'label' => 'Icon filepath',
                 'category' => $this->getReference(
@@ -88,7 +84,7 @@ class Parameters extends Fixture implements FixtureGroupInterface
                 ),
             ],
             'COMPANY_NAME' => [
-                'value' => 'Fastfony',
+                'value' => 'Marshal',
                 'type' => 'text',
                 'label' => 'Name',
                 'category' => $this->getReference(
@@ -97,7 +93,7 @@ class Parameters extends Fixture implements FixtureGroupInterface
                 ),
             ],
             'REGISTRATION_ENABLED' => [
-                'value' => '1',
+                'value' => '0',
                 'type' => 'bool',
                 'label' => 'Registration authorized',
                 'category' => $this->getReference(
@@ -112,38 +108,6 @@ class Parameters extends Fixture implements FixtureGroupInterface
                 'help' => 'An URL with https://',
                 'category' => $this->getReference(
                     self::LOGIN_PARAMETER_CATEGORY.self::PARAMETER_CATEGORY_REFERENCE_SUFFIX,
-                    ParameterCategory::class
-                ),
-            ],
-            'GITHUB_CLIENT_ID' => [
-                'type' => 'text',
-                'label' => 'Github Client ID',
-                'category' => $this->getReference(
-                    self::OAUTH_GITHUB_PARAMETER_CATEGORY.self::PARAMETER_CATEGORY_REFERENCE_SUFFIX,
-                    ParameterCategory::class
-                ),
-            ],
-            'GITHUB_CLIENT_SECRET' => [
-                'type' => 'text',
-                'label' => 'Github Client Secret',
-                'category' => $this->getReference(
-                    self::OAUTH_GITHUB_PARAMETER_CATEGORY.self::PARAMETER_CATEGORY_REFERENCE_SUFFIX,
-                    ParameterCategory::class
-                ),
-            ],
-            'GOOGLE_CLIENT_ID' => [
-                'type' => 'text',
-                'label' => 'Google Client ID',
-                'category' => $this->getReference(
-                    self::OAUTH_GOOGLE_PARAMETER_CATEGORY.self::PARAMETER_CATEGORY_REFERENCE_SUFFIX,
-                    ParameterCategory::class
-                ),
-            ],
-            'GOOGLE_CLIENT_SECRET' => [
-                'type' => 'text',
-                'label' => 'Google Client Secret',
-                'category' => $this->getReference(
-                    self::OAUTH_GOOGLE_PARAMETER_CATEGORY.self::PARAMETER_CATEGORY_REFERENCE_SUFFIX,
                     ParameterCategory::class
                 ),
             ],

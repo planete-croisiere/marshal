@@ -14,7 +14,7 @@
           <th :colspan="groups.length + 1" scope="colgroup">{{ category }}</th>
         </tr>
         <tr v-for="role in roles">
-          <td>{{ role.name }}</td>
+          <td>{{ role.description }}</td>
           <td v-for="group in groups" :key="group.id">
             <input
               type="checkbox"

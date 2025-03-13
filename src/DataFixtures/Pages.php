@@ -33,7 +33,7 @@ class Pages extends Fixture implements FixtureGroupInterface
         $homepage = (new Page())
             ->setHomepage(true)
             ->setName('Homepage')
-            ->setTitle('Welcome on Fastfony!')
+            ->setTitle('Welcome on Marshal!')
             ->setEnabled(true)
         ;
         $manager->persist($homepage);

@@ -1,0 +1,18 @@
+{
+  "An URL with https://": "Une URL avec https://",
+  "Background Image URL": "URL de l'image d'arrière-plan",
+  "Company": "Société",
+  "Email": "Courriel",
+  "Icon filepath": "Chemin d'accès à l'icône",
+  "Login": "Connexion",
+  "Name": "Nom",
+  "No": "Non",
+  "Registration authorized": "Inscription autorisée",
+  "Sender email address": "Adresse e-mail de l'expéditeur",
+  "table.group-role-matrix": "Permissions / Groupes",
+  "This e-mail must be authorize by server configure on MAILER_DSN in .env.local": "Cet e-mail doit être autorisé par le serveur configuré sur MAILER_DSN dans .env.local",
+  "toast.error": "Une erreur est survenue. Veuillez réessayer.",
+  "toast.group-role-matrix.toggle.success": "Droit enregistré avec succès.",
+  "toast.parameter.updated": "Nouvelle valeur enregistrée.",
+  "Yes": "Oui"
+}

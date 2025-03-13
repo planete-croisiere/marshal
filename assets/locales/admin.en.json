@@ -96,8 +96,8 @@
   "user_crud.action.send_login_link_email": "Send a login link",
   "Users": "Users",
   "Version": "Version number",
+  "vich_uploader.form_label.delete_confirm": "Delete photo?",
   "View Log Entries": "Show versions",
   "View or preview": "View or preview",
-  "vich_uploader.form_label.delete_confirm": "Delete photo?",
   "warning-matrix": "Modifying a group disconnects all its members."
 }

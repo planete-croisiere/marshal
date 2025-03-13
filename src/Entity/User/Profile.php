@@ -33,7 +33,7 @@ class Profile
 
     #[ORM\OneToOne(inversedBy: 'profile', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private User $user;
+    private ?User $user = null;
 
     #[Vich\UploadableField(mapping: 'profile_photo', fileNameProperty: 'photo', size: 'photoSize')]
     private ?File $photoFile = null;
@@ -52,6 +52,22 @@ class Profile
         return $this->getFirstName().' '.$this->getLastName();
     }
 
+    #[Groups([
+        'user:profile:read',
+    ])]
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    #[Groups([
+        'user:profile:read',
+    ])]
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
     public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
@@ -64,12 +80,12 @@ class Profile
         return $this;
     }
 
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(User $user): static
+    public function setUser(?User $user): static
     {
         $this->user = $user;
 

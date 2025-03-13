@@ -27,6 +27,12 @@ use Symfony\Component\Validator\Constraints as Assert;
             security: "is_granted('ROLE_API') and object == user",
             provider: SelfUserProvider::class,
         ),
+        new Get(
+            uriTemplate: '/me',
+            normalizationContext: ['groups' => ['legacy:user:profile:read']],
+            security: "is_granted('ROLE_API') and object == user",
+            provider: SelfUserProvider::class,
+        ),
     ]
 )]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -120,6 +126,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[Groups([
         'user:profile:read',
+        'legacy:user:profile:read',
     ])]
     #[ApiProperty(security: "is_granted('ROLE_OAUTH2_EMAIL')")]
     public function getEmail(): string
@@ -146,8 +153,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[Groups([
         'user:profile:read',
+        'legacy:user:profile:read',
     ])]
-    #[ApiProperty(security: "is_granted('ROLE_OAUTH2_ROLES')")]
+    // #[ApiProperty(security: "is_granted('ROLE_OAUTH2_ROLES')")]
+    // TODO : à activer lorsque toutes les applications seront passées sur Marshal v2
     public function getRoles(): array
     {
         // guarantee every user at least has ROLE_USER
@@ -160,6 +169,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return array_values(array_unique($roles));
+    }
+
+    public function hasRole(string $role): bool
+    {
+        return \in_array($role, $this->getRoles(), true);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->hasRole('ROLE_ADMIN');
     }
 
     /**
@@ -262,5 +281,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->clients->removeElement($client);
 
         return $this;
+    }
+
+    /*
+     * For compatibility with Marshal v1
+     */
+    /**
+     * @return array<string, string>
+     */
+    #[Groups(['legacy:user:profile:read'])]
+    public function getIdentity(): array
+    {
+        return [
+            'firstName' => $this->getProfile()?->getFirstName(),
+            'lastName' => $this->getProfile()?->getLastName(),
+        ];
+    }
+
+    /*
+     * For compatibility with Marshal v1
+     */
+    #[Groups(['legacy:user:profile:read'])]
+    public function getPhoneNumber(): ?string
+    {
+        return $this->getProfile()?->getPhoneNumber();
     }
 }

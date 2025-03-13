@@ -18,6 +18,9 @@ class Client extends AbstractClient
     #[ORM\Column(type: 'string', length: 32)]
     public string $identifier;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $url = null;
+
     public function __toString(): string
     {
         return $this->getName();
@@ -85,6 +88,18 @@ class Client extends AbstractClient
         $this->setRedirectUris(...array_map(static function (string $redirectUri): RedirectUri {
             return new RedirectUri($redirectUri);
         }, $redirectUriStrings));
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(?string $url): static
+    {
+        $this->url = $url;
 
         return $this;
     }

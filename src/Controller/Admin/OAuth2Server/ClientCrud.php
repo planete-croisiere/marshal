@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 use League\Bundle\OAuth2ServerBundle\OAuth2Grants;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -35,6 +36,8 @@ class ClientCrud extends AbstractCrudController
 
         return [
             TextField::new('name'),
+            UrlField::new('url')
+                ->hideOnIndex(),
             TextField::new('identifier'),
             TextField::new('secret')
                 ->hideOnIndex()

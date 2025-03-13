@@ -1,6 +1,6 @@
 proxy:
     domains:
-        - fastfony-pro
+        - local.marshal.planete-croisiere
 
 http:
     port: 9876

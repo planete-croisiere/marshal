@@ -26,7 +26,7 @@ class LoginLinkTest extends TestCase
             $this->createMock(LoginLinkHandlerInterface::class),
             $cacheItemPool,
             $this->createMock(TranslatorInterface::class),
-            'Fastfony'
+            'Marshal'
         );
 
         $cacheItemPool->expects(self::once())

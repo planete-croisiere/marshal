@@ -14,7 +14,7 @@
         </p>
     {% endif %}
 
-    <form action="{{ path('login') }}" method="post" class="space-y-6 mt-4">
+    <form action="{{ path('login') }}" method="post" class="space-y-6 mt-4" data-turbo="false">
         {% if error is not null %}
             <div class="pb-3 text-sm text-error">
                 {{ error.message|trans({}, 'validators') }}
@@ -51,6 +51,4 @@
             </button>
         </div>
     </form>
-
-    {{ include('security/_oauth_clients.html.twig') }}
 {% endblock %}

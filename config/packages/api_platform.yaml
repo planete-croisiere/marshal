@@ -1,5 +1,5 @@
 api_platform:
-    title: Fastfony API (public & internal)
+    title: Marshal API (public & internal)
     version: 0.0.1
     formats:
         jsonld: ['application/ld+json']

@@ -36,7 +36,9 @@ class GroupCrud extends AbstractCrudController
     {
         return [
             TextField::new('name'),
-            BooleanField::new('onRegistration'),
+            BooleanField::new('onRegistration')
+                ->hideOnIndex()
+                ->hideOnForm(),
             CollectionField::new('roles')
                 ->hideOnForm(),
             AssociationField::new('roles')
