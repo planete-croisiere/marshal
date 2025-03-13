@@ -56,6 +56,7 @@ class NoErrorOnSimpleRouteTest extends WebTestCase
             || false !== stripos($routeName, 'batch') // Autocomplete Easyadmin routes
             || false !== stripos($routeName, 'oauth2') // OAuth2 routes
             || false !== stripos($routeName, 'connect') // OAuth2 connect & check routes
+            || false !== stripos($routeName, 'register') // By default register is disabled on Marshal
         ) {
             return false;
         }

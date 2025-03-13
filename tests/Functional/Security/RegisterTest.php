@@ -17,6 +17,17 @@ class RegisterTest extends WebTestCase
         $this->client = static::createClient();
     }
 
+    public function testRegistrationEnabled(): void
+    {
+        $parameterRepository = static::getContainer()->get(ParameterRepository::class);
+        $parameter = $parameterRepository->findOneBy(['key' => 'REGISTRATION_ENABLED']);
+        $parameter->setValue('1');
+        $parameterRepository->save($parameter);
+
+        $this->client->request('GET', '/register');
+        $this->assertResponseIsSuccessful();
+    }
+
     public function testRegisterSuccess(): void
     {
         $this->client->request('GET', '/register');
