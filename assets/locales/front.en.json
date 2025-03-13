@@ -1,5 +1,6 @@
 {
   "link.admin": "Admin",
   "link.login": "Login",
-  "link.logout": "Logout"
+  "link.logout": "Logout",
+  "link.user_crud_index": "Users management"
 }

@@ -42,10 +42,10 @@
 
                     {% if is_granted('ROLE_ADMIN') %}
                         <a
-                            href="{{ path('admin') }}"
+                            href="{{ path('admin_user_crud_index') }}"
                             class="text-sm font-semibold link link-hover"
                         >
-                            <span>{{ 'link.admin'|trans }}</span>
+                            <span>{{ 'link.user_crud_index'|trans }}</span>
                         </a>
                     {% endif %}
                     {{ include('_choose_theme.html.twig') }}

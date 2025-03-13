@@ -1,5 +1,6 @@
 {
   "link.admin": "Admin",
   "link.login": "Connexion",
-  "link.logout": "Déconnexion"
+  "link.logout": "Déconnexion",
+  "link.user_crud_index": "Gestion des utilisateurs"
 }
