@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 // This file is auto-generated and is for apps only. Bundles SHOULD NOT rely on its content.
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
@@ -922,6 +920,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     },
  * }
  * @psalm-type DoctrineMigrationsConfig = array{
+ *     enable_service_migrations?: bool|Param, // Whether to enable fetching migrations from the service container. // Default: false
  *     migrations_paths?: array<string, scalar|Param|null>,
  *     services?: array<string, scalar|Param|null>,
  *     factories?: array<string, scalar|Param|null>,
@@ -1557,7 +1556,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         allow_origin?: list<scalar|Param|null>,
  *         allow_headers?: list<scalar|Param|null>,
  *         allow_methods?: list<scalar|Param|null>,
- *         allow_private_network?: bool|Param, // Default: false
+ *         allow_private_network?: bool|Param,
  *         expose_headers?: list<scalar|Param|null>,
  *         max_age?: scalar|Param|null, // Default: 0
  *         hosts?: list<scalar|Param|null>,
@@ -1871,6 +1870,9 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         softdeleteable?: scalar|Param|null, // Default: "Gedmo\\SoftDeleteable\\SoftDeleteableListener"
  *         uploadable?: scalar|Param|null, // Default: "Gedmo\\Uploadable\\UploadableListener"
  *         reference_integrity?: scalar|Param|null, // Default: "Gedmo\\ReferenceIntegrity\\ReferenceIntegrityListener"
+ *     },
+ *     softdeleteable?: array{
+ *         handle_post_flush_event?: bool|Param, // Default: false
  *     },
  *     uploadable?: array{
  *         default_file_path?: scalar|Param|null, // Default: null
