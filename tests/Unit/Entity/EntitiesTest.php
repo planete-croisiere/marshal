@@ -46,7 +46,7 @@ class EntitiesTest extends KernelTestCase
 
         $properties = [];
         $reflectionProperties = array_filter(
-            $classMetadata->getReflectionProperties(),
+            $classMetadata->getReflectionClass()->getProperties(),
             function (\ReflectionProperty $property) use ($classMetadata) {
                 return $property->class === $classMetadata->getName();
             }
