@@ -6,7 +6,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User\User;
 use App\Security\LoginLink;
-use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminAction;
+use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminRoute;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -106,7 +106,7 @@ class UserCrud extends AbstractCrudController
         ;
     }
 
-    #[AdminAction(routePath: '/{entityId}/send-login-link', routeName: 'send_login_link')]
+    #[AdminRoute(path: '/{entityId}/send-login-link', name: 'send_login_link')]
     public function sendLoginLinkEmail(
         AdminContext $adminContext,
         LoginLink $loginLink,
