@@ -8,7 +8,7 @@ use App\Entity\User\User;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAccountStatusException;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 class UserChecker implements UserCheckerInterface
 {
     public function checkPreAuth(UserInterface $user): void
@@ -23,7 +23,7 @@ class UserChecker implements UserCheckerInterface
         }
     }
 
-    public function checkPostAuth(UserInterface $user): void
+    public function checkPostAuth(UserInterface $user, ?TokenInterface $token = null): void
     {
         // Do nothing
     }
