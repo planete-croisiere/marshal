@@ -47,20 +47,14 @@ tasks:
             - bin/console cache:warmup --env=test
 
     start:
-        desc: Start the development server
+        desc: Start the Docker development stack
         cmds:
-            - task: vendor
-            - task: node_modules
-            - chmod -R 777 public/uploads/
-            - bin/console doctrine:schema:update --force  --env=dev
-            - symfony proxy:start
-            - symfony server:start -d
+            - docker compose -f docker/dev/docker-compose.yml up --build -d
 
     stop:
-        desc: Stop Docker containers, Symfony server & kill npm dev-server
+        desc: Stop the Docker development stack
         cmds:
-            - symfony server:stop
-            - symfony proxy:stop
+            - docker compose -f docker/dev/docker-compose.yml down --remove-orphans
 
     tests:
         desc: Run tests
