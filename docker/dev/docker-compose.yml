@@ -10,8 +10,6 @@ services:
       APP_DEBUG: "1"
       APP_SECRET: devmarshal
       DATABASE_URL: mysql://marshal:marshal@database:3306/marshal?serverVersion=8.0&charset=utf8mb4
-      TRUSTED_PROXIES: 0.0.0.0/0
-      DEFAULT_URI: http://marshal.localhost
       MAILER_DSN: smtp://mailpit:1025
       CORS_ALLOW_ORIGIN: |-
         ^https?://(localhost|assembly-station\.localhost|my-cabin\.localhost|marshal\.localhost)(:[0-9]+)?$
@@ -64,7 +62,8 @@ services:
       - traefik.enable=true
       - traefik.docker.network=planete-traefik
       - traefik.http.routers.marshal.rule=Host(`marshal.localhost`)
-      - traefik.http.routers.marshal.entrypoints=web
+      - traefik.http.routers.marshal.entrypoints=web,websecure
+      - traefik.http.routers.marshal.tls=true
       - traefik.http.services.marshal.loadbalancer.server.port=80
     networks:
       - default
