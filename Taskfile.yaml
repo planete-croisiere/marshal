@@ -1,27 +1,34 @@
 version: '3'
 
+vars:
+    DOCKER_COMPOSE: docker compose -f docker/dev/docker-compose.yml
+    EXEC_APP: '{{.DOCKER_COMPOSE}} exec app'
+    CONSOLE: '{{.EXEC_APP}} php bin/console'
+
 tasks:
     fixtures:
         desc: Generate fixtures for dev environment
         cmds:
             - task: vendor
             - task: node_modules
-            - bin/console doctrine:database:drop --force --env=dev
-            - bin/console doctrine:database:create --env=dev
-            - bin/console doctrine:schema:create --env=dev
-            - bin/console doctrine:fixtures:load --no-interaction --env=dev
+            - '{{.CONSOLE}} doctrine:database:drop --force --env=dev'
+            - '{{.CONSOLE}} doctrine:database:create --env=dev'
+            - '{{.CONSOLE}} doctrine:schema:create --env=dev'
+            - '{{.CONSOLE}} doctrine:fixtures:load --no-interaction --env=dev'
 
     oauth2-server-init:
         desc: Generate private and public keys for OAuth2 Server
         cmds:
-            - mkdir -p config/jwt
-            - openssl genrsa -out config/jwt/private.pem 2048
-            - openssl rsa -in config/jwt/private.pem -pubout -out config/jwt/public.pem
-            - php -r 'echo "OAUTH_ENCRYPTION_KEY=".base64_encode(random_bytes(32)), PHP_EOL;' >> .env.local
+            #- '{{.EXEC_APP}} mkdir -p config/jwt'
+            #- '{{.EXEC_APP}} openssl genrsa -out config/jwt/private.pem 2048'
+           # - '{{.EXEC_APP}} openssl rsa -in config/jwt/private.pem -pubout -out config/jwt/public.pem'
+            - '{{.EXEC_APP}} chmod 640 config/jwt/private.pem'
+            - '{{.EXEC_APP}} chmod 644 config/jwt/public.pem'
+            - '{{.EXEC_APP}} php -r '\''echo "OAUTH_ENCRYPTION_KEY=".base64_encode(random_bytes(32)), PHP_EOL;'\'' >> .env.local'
 
     vendor:
         cmds:
-            - composer install
+            - '{{.EXEC_APP}} composer install'
         sources:
             - composer.lock
         generates:
@@ -29,9 +36,9 @@ tasks:
 
     node_modules:
         cmds:
-            - npm install
+            - '{{.EXEC_APP}} npm install'
         sources:
-            - package-lock.lock
+            - package-lock.json
         generates:
             - node_modules/**/*
 
@@ -39,41 +46,41 @@ tasks:
         cmds:
             - task: vendor
             - task: node_modules
-            - bin/console doctrine:database:drop --force --env=test
-            - bin/console doctrine:database:create --env=test
-            - bin/console doctrine:schema:create --env=test
-            - bin/console doctrine:fixtures:load --group=test --no-interaction --env=test
-            - bin/console cache:clear --env=test
-            - bin/console cache:warmup --env=test
+            - '{{.CONSOLE}} doctrine:database:drop --force --env=test'
+            - '{{.CONSOLE}} doctrine:database:create --env=test'
+            - '{{.CONSOLE}} doctrine:schema:create --env=test'
+            - '{{.CONSOLE}} doctrine:fixtures:load --group=test --no-interaction --env=test'
+            - '{{.CONSOLE}} cache:clear --env=test'
+            - '{{.CONSOLE}} cache:warmup --env=test'
 
     start:
         desc: Start the Docker development stack
         cmds:
-            - docker compose -f docker/dev/docker-compose.yml up --build -d
+            - '{{.DOCKER_COMPOSE}} up --build -d'
 
     stop:
         desc: Stop the Docker development stack
         cmds:
-            - docker compose -f docker/dev/docker-compose.yml down --remove-orphans
+            - '{{.DOCKER_COMPOSE}} down --remove-orphans'
 
     tests:
         desc: Run tests
         cmds:
             - task: setup_tests
-            - symfony run bin/phpunit
+            - '{{.EXEC_APP}} php bin/phpunit'
 
     coverage:
         desc: Run tests with coverage (required Xdebug)
         cmds:
             - task: setup_tests
-            - XDEBUG_MODE=coverage php bin/phpunit --coverage-html=docs/coverage
+            - '{{.EXEC_APP}} bash -lc "XDEBUG_MODE=coverage php bin/phpunit --coverage-html=docs/coverage"'
 
     phpstan:
         desc: Run PHPStan
         cmds:
-            - vendor/bin/phpstan analyse src tests
+            - '{{.EXEC_APP}} vendor/bin/phpstan analyse src tests'
 
     phpinsights:
         desc: Run PHP Insights
         cmds:
-            - vendor/bin/phpinsights
+            - '{{.EXEC_APP}} vendor/bin/phpinsights'
