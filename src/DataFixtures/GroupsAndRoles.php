@@ -38,6 +38,7 @@ class GroupsAndRoles extends Fixture implements FixtureGroupInterface
             'ROLE_ADMIN' => 'Administrator',
             'ROLE_ALLOWED_TO_SWITCH' => 'Allowed to switch',
             'ROLE_SUPER_ADMIN' => 'Super Administrator',
+            'ROLE_CRM_FINANCE_MANAGER' => 'Responsable financier',
             'ROLE_CRM_SELLER' => 'Vente interne',
             'ROLE_CRM_SHOW_CUSTOMER_HISTORY' => 'Voir l\'historique client',
             'ROLE_CRM_PARTNER' => 'Vente externe',
