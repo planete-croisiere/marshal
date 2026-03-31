@@ -43,6 +43,7 @@ class GroupsAndRoles extends Fixture implements FixtureGroupInterface
             'ROLE_CRM_SHOW_CUSTOMER_HISTORY' => 'Voir l\'historique client',
             'ROLE_CRM_PARTNER' => 'Vente externe',
             'ROLE_CRM_BACKOFFICE' => 'Gestion backoffice',
+            'ROLE_CRM_READONLY_MB3M' => 'Lecture contrat MB3M à faire',
             'ROLE_CAN_SWITCH_USER' => 'Impersonation',
             'ROLE_CATALOG' => 'Accès au catalogue',
             'ROLE_FRONTOFFICE_ADMIN' => 'Administration',
@@ -75,6 +76,7 @@ class GroupsAndRoles extends Fixture implements FixtureGroupInterface
             'Assembly-Station' => [
                 $this->getReference('ROLE_CRM_SELLER', Role::class),
                 $this->getReference('ROLE_CRM_SHOW_CUSTOMER_HISTORY', Role::class),
+                $this->getReference('ROLE_CRM_FINANCE_MANAGER', Role::class),
                 $this->getReference('ROLE_CRM_PARTNER', Role::class),
                 $this->getReference('ROLE_CRM_BACKOFFICE', Role::class),
                 $this->getReference('ROLE_CAN_SWITCH_USER', Role::class),
