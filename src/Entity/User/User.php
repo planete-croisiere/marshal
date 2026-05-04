@@ -307,4 +307,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->getProfile()?->getPhoneNumber();
     }
+
+    #[Groups(['user:profile:read'])]
+    public function isEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
 }
