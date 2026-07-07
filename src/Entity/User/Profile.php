@@ -22,11 +22,13 @@ class Profile
 
     #[Groups([
         'user:profile:read',
+        'legacy:user:profile:read',
     ])]
     public ?string $photoUrl = null;
 
     #[Groups([
         'user:profile:read',
+        'legacy:user:profile:read',
     ])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $phoneNumber = null;
@@ -46,6 +48,7 @@ class Profile
 
     #[Groups([
         'user:profile:read',
+        'legacy:user:profile:read',
     ])]
     public function getFullName(): string
     {
@@ -54,6 +57,7 @@ class Profile
 
     #[Groups([
         'user:profile:read',
+        'legacy:user:profile:read',
     ])]
     public function getFirstName(): string
     {
@@ -62,6 +66,7 @@ class Profile
 
     #[Groups([
         'user:profile:read',
+        'legacy:user:profile:read',
     ])]
     public function getLastName(): string
     {

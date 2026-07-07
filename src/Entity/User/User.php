@@ -59,6 +59,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Valid]
     #[Groups([
         'user:profile:read',
+        'legacy:user:profile:read',
     ])]
     #[ApiProperty(security: "is_granted('ROLE_OAUTH2_PROFILE')")]
     private ?Profile $profile = null;
