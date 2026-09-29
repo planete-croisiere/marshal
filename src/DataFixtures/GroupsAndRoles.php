@@ -44,6 +44,7 @@ class GroupsAndRoles extends Fixture implements FixtureGroupInterface
             'ROLE_CRM_PARTNER' => 'Vente externe',
             'ROLE_CRM_BACKOFFICE' => 'Gestion backoffice',
             'ROLE_CRM_READONLY_MB3M' => 'Lecture contrat MB3M à faire',
+            'ROLE_CRM_SALES_MANAGER' => 'Manager d\'équipe commerciale',
             'ROLE_CAN_SWITCH_USER' => 'Impersonation',
             'ROLE_CATALOG' => 'Accès au catalogue',
             'ROLE_FRONTOFFICE_ADMIN' => 'Administration',
@@ -80,6 +81,7 @@ class GroupsAndRoles extends Fixture implements FixtureGroupInterface
                 $this->getReference('ROLE_CRM_PARTNER', Role::class),
                 $this->getReference('ROLE_CRM_BACKOFFICE', Role::class),
                 $this->getReference('ROLE_CAN_SWITCH_USER', Role::class),
+                $this->getReference('ROLE_CRM_SALES_MANAGER', Role::class),
             ],
             'Future-Cruise (Catalogue)' => [
                 $this->getReference('ROLE_CATALOG', Role::class),
@@ -144,6 +146,12 @@ class GroupsAndRoles extends Fixture implements FixtureGroupInterface
                 $this->getReference('ROLE_API', Role::class),
                 $this->getReference('ROLE_USER', Role::class),
                 $this->getReference('ROLE_CRM_BACKOFFICE', Role::class),
+            ],
+            // Assembly-Station v2: team statistics and sales objectives; added on top of « Commercial » for a manager who sells
+            'Manager commercial' => [
+                $this->getReference('ROLE_API', Role::class),
+                $this->getReference('ROLE_USER', Role::class),
+                $this->getReference('ROLE_CRM_SALES_MANAGER', Role::class),
             ],
             'Editeur site' => [
                 $this->getReference('ROLE_API', Role::class),
