@@ -6,6 +6,7 @@ namespace App\Controller\Admin\GroupRole;
 
 use App\Repository\User\GroupRepository;
 use App\Repository\User\RoleRepository;
+use App\Security\Voter\PrivilegeVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,6 +30,17 @@ class Toggle extends AbstractController
         $request = $request->toArray();
         $group = $this->groupRepository->find($request['group_id']);
         $role = $this->roleRepository->find($request['role_id']);
+
+        if (null === $group || null === $role) {
+            throw $this->createNotFoundException();
+        }
+
+        // Droit protégé ou groupe protégé : réservé aux super administrateurs
+        if (!$this->isGranted(PrivilegeVoter::MANAGE, $group) || !$this->isGranted(PrivilegeVoter::MANAGE, $role)) {
+            return $this->json([
+                'checked' => $group->getRoles()->contains($role),
+            ], Response::HTTP_FORBIDDEN);
+        }
 
         if ($group->getRoles()->contains($role)) {
             $group->removeRole($role);
