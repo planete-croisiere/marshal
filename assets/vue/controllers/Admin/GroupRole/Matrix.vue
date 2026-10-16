@@ -20,6 +20,12 @@
               type="checkbox"
               class="form-check-input"
               :checked="role.groups.includes(group.id)"
+              :disabled="isLocked(role, group)"
+              :title="
+                isLocked(role, group)
+                  ? t('table.group-role-matrix.locked')
+                  : null
+              "
               @change="toggle(role, group, $event)"
             />
           </td>
@@ -41,7 +47,15 @@ const { t } = useI18n();
 const props = defineProps({
   groups: Array,
   roles: Array,
+  canGrantProtectedPrivileges: Boolean,
 });
+
+// Groupe ou droit protégé (Grand Chef, usurpation, technique) : réservé aux super administrateurs
+function isLocked(role, group) {
+  return (
+    !props.canGrantProtectedPrivileges && (role.protected || group.protected)
+  );
+}
 
 const rolesByCategory = props.roles.reduce((acc, role) => {
   if (!acc[role.category]) {
@@ -64,6 +78,12 @@ function toggle(role, group, $event) {
       toast.success(t('toast.group-role-matrix.toggle.success'), {
         timeout: 2000,
       });
+    })
+    .catch((error) => {
+      $event.target.checked =
+        error.response?.data?.checked ?? !$event.target.checked;
+
+      toast.error(t('toast.group-role-matrix.toggle.error'));
     });
 }
 </script>

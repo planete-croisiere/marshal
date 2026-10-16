@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Entity\User\Role;
+use App\Security\Voter\PrivilegeVoter;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -62,6 +63,8 @@ class RoleCrud extends AbstractCrudController
         return $actions
             ->add(Crud::PAGE_INDEX, $groupsCrudAction)
             ->add(Crud::PAGE_INDEX, $roleCategoriesCrudAction)
+            ->setPermission(Action::EDIT, PrivilegeVoter::MANAGE)
+            ->setPermission(Action::DELETE, PrivilegeVoter::MANAGE)
         ;
     }
 

@@ -14,5 +14,7 @@
   "toast.error": "An error occured.Please retry.",
   "toast.group-role-matrix.toggle.success": "Right successfully saved.",
   "toast.parameter.updated": "New value is saved.",
-  "Yes": "Yes"
+  "Yes": "Yes",
+  "table.group-role-matrix.locked": "Reserved to super administrators",
+  "toast.group-role-matrix.toggle.error": "Change refused: reserved to super administrators."
 }

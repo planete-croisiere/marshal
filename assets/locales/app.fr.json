@@ -14,5 +14,7 @@
   "toast.error": "Une erreur est survenue. Veuillez réessayer.",
   "toast.group-role-matrix.toggle.success": "Droit enregistré avec succès.",
   "toast.parameter.updated": "Nouvelle valeur enregistrée.",
-  "Yes": "Oui"
+  "Yes": "Oui",
+  "table.group-role-matrix.locked": "Réservé aux super administrateurs (Grand Chef)",
+  "toast.group-role-matrix.toggle.error": "Modification refusée : droit réservé aux super administrateurs."
 }

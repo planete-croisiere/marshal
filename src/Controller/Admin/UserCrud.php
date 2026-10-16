@@ -5,7 +5,11 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Entity\User\User;
+use App\Repository\User\GroupRepository;
 use App\Security\LoginLink;
+use App\Security\PrivilegeGuard;
+use App\Security\Voter\PrivilegeVoter;
+use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminRoute;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -26,6 +30,7 @@ class UserCrud extends AbstractCrudController
 {
     public function __construct(
         private readonly AdminUrlGenerator $adminUrlGenerator,
+        private readonly PrivilegeGuard $privilegeGuard,
     ) {
     }
 
@@ -60,6 +65,10 @@ class UserCrud extends AbstractCrudController
                 ->setFormTypeOptions([
                     'by_reference' => false,
                 ])
+                // Les groupes protégés (Grand Chef, Technicien) ne sont proposés qu'aux super administrateurs
+                ->setQueryBuilder(fn (QueryBuilder $queryBuilder) => $this->privilegeGuard->canGrantProtectedPrivileges()
+                    ? $queryBuilder
+                    : GroupRepository::excludeGroupsWithRoles($queryBuilder, $queryBuilder->getRootAliases()[0], PrivilegeGuard::PROTECTED_ROLES))
                 ->hideOnIndex(),
             CollectionField::new('clients')
                 ->hideOnForm(),
@@ -103,6 +112,8 @@ class UserCrud extends AbstractCrudController
             ->add(Crud::PAGE_EDIT, $sendLoginLinkAction)
             ->add(Crud::PAGE_INDEX, $sendLoginLinkAction)
             ->add(Crud::PAGE_INDEX, $groupsCrudAction)
+            ->setPermission(Action::EDIT, PrivilegeVoter::MANAGE)
+            ->setPermission(Action::DELETE, PrivilegeVoter::MANAGE)
         ;
     }
 
