@@ -25,6 +25,7 @@
         {% set groups = [{
             id: group.id,
             name: group.name,
+            protected: group.roles|filter(r => r.name in protected_role_names)|length > 0,
         }]|merge(groups) %}
     {% endfor %}
 
@@ -36,6 +37,7 @@
             name: role.name,
             description: role.description,
             groups: role.groups|map(g => g.id),
+            protected: role.name in protected_role_names,
         }]|merge(roles) %}
     {% endfor %}
 
@@ -46,5 +48,6 @@
     <div {{ vue_component('Admin/GroupRole/Matrix', {
         groups: groups,
         roles: roles,
+        canGrantProtectedPrivileges: can_grant_protected_privileges,
     }) }}></div>
 {% endblock %}

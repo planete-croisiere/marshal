@@ -6,6 +6,7 @@ namespace App\Controller\Admin\GroupRole;
 
 use App\Repository\User\GroupRepository;
 use App\Repository\User\RoleRepository;
+use App\Security\PrivilegeGuard;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
@@ -20,10 +21,13 @@ class Matrix extends AbstractController
     public function __invoke(
         GroupRepository $groupRepository,
         RoleRepository $roleRepository,
+        PrivilegeGuard $privilegeGuard,
     ): array {
         return [
             'group_entities' => $groupRepository->findAll(),
             'role_entities' => $roleRepository->findAll(),
+            'can_grant_protected_privileges' => $privilegeGuard->canGrantProtectedPrivileges(),
+            'protected_role_names' => PrivilegeGuard::PROTECTED_ROLES,
         ];
     }
 }
