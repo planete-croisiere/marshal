@@ -9,8 +9,6 @@ parameters:
     ignoreErrors:
         -
             identifier: nullCoalesce.offset
-        -
-            identifier: isset.offset
 
 includes:
     - vendor/symplify/phpstan-rules/config/symfony-rules.neon
