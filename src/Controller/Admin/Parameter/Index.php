@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin\Parameter;
 
+use App\Security\RoleName;
 use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_TECHNICAL')]
+#[IsGranted(RoleName::TECHNICAL)]
 class Index extends AbstractController
 {
     /**

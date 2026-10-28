@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin\OAuth2Server;
 
 use App\Entity\OAuth2Server\Client;
+use App\Security\RoleName;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
@@ -16,7 +17,7 @@ use League\Bundle\OAuth2ServerBundle\OAuth2Grants;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_TECHNICAL')]
+#[IsGranted(RoleName::TECHNICAL)]
 class ClientCrud extends AbstractCrudController
 {
     public function __construct(
