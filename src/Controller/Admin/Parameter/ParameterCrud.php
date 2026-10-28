@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin\Parameter;
 
 use App\Entity\Parameter\Parameter;
+use App\Security\RoleName;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -17,7 +18,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_TECHNICAL')]
+#[IsGranted(RoleName::TECHNICAL)]
 class ParameterCrud extends AbstractCrudController
 {
     public function __construct(

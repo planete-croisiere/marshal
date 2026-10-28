@@ -22,6 +22,14 @@ class ProtectedPrivilegeListenerTest extends KernelTestCase
         $this->entityManager = self::getContainer()->get(EntityManagerInterface::class);
         // Chaque test est annulé en fin d'exécution pour laisser les fixtures intactes
         $this->entityManager->getConnection()->beginTransaction();
+
+        // Le super administrateur vient des fixtures du groupe « test ». Les tests
+        // fonctionnels d'installation, exécutés avant, rechargent les fixtures du
+        // groupe « install », qui ne le contiennent pas : on le recrée au besoin,
+        // dans la transaction annulée en fin de test.
+        if (null === $this->entityManager->getRepository(User::class)->findOneBy(['email' => 'superadmin@fastfony.com'])) {
+            $this->createUser('superadmin@fastfony.com', Group::SUPER_ADMIN_NAME);
+        }
     }
 
     protected function tearDown(): void
