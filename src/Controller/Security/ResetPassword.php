@@ -30,7 +30,8 @@ class ResetPassword extends AbstractController
         RequestPassword $requestPassword,
         Request $request,
     ): Response {
-        if ($requestPassword->getExpireAt() < new \DateTime()) {
+        // Un compte désactivé depuis la demande ne peut ni changer son mot de passe ni se connecter
+        if ($requestPassword->getExpireAt() < new \DateTime() || !$requestPassword->getUser()->isEnabled()) {
             throw $this->createNotFoundException();
         }
 

@@ -23,8 +23,10 @@ class UserFactory
             return $existingUser;
         }
 
+        // Compte en attente : activé par AccountActivation lors de cette première connexion sociale
         $user = (new User())
-            ->setEmail($googleUser->getEmail());
+            ->setEmail($googleUser->getEmail())
+            ->setPendingActivation(true);
 
         $this->userRepository->save($user);
 
@@ -40,8 +42,10 @@ class UserFactory
             return $existingUser;
         }
 
+        // Compte en attente : activé par AccountActivation lors de cette première connexion sociale
         $user = (new User())
-            ->setEmail($githubUser->getEmail());
+            ->setEmail($githubUser->getEmail())
+            ->setPendingActivation(true);
 
         $this->userRepository->save($user);
 
