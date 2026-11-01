@@ -9,6 +9,7 @@ use App\Repository\User\GroupRepository;
 use App\Security\LoginLink;
 use App\Security\PrivilegeGuard;
 use App\Security\Voter\PrivilegeVoter;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminRoute;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -58,6 +59,10 @@ class UserCrud extends AbstractCrudController
             FormField::addColumn(4)
                 ->addCssClass('text-right pt-4 pe-5'),
             BooleanField::new('enabled'),
+            // Inscrit (ou connecté par un fournisseur social) qui n'a pas encore utilisé son premier lien
+            BooleanField::new('pendingActivation')
+                ->renderAsSwitch(false)
+                ->hideOnForm(),
             FormField::addTab('Permissions'),
             CollectionField::new('groups')
                 ->hideOnForm(),
@@ -117,12 +122,36 @@ class UserCrud extends AbstractCrudController
         ;
     }
 
+    /**
+     * Dès qu'un administrateur enregistre un compte, c'est lui qui décide de son état : le compte
+     * n'est plus en attente d'activation par son titulaire (un refus d'inscription reste un refus).
+     */
+    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        if ($entityInstance instanceof User) {
+            $entityInstance->setPendingActivation(false);
+        }
+
+        parent::updateEntity($entityManager, $entityInstance);
+    }
+
     #[AdminRoute(path: '/{entityId}/send-login-link', name: 'send_login_link')]
     public function sendLoginLinkEmail(
         AdminContext $adminContext,
         LoginLink $loginLink,
     ): RedirectResponse {
         $user = $adminContext->getEntity()->getInstance();
+
+        // Le bouton n'est affiché que pour un compte actif (displayIf), mais la route peut être
+        // appelée directement : un compte désactivé ne reçoit jamais de lien de connexion
+        if ($user instanceof User && !$user->isEnabled()) {
+            $this->addFlash(
+                'danger',
+                'flash.login_link_sent.error',
+            );
+
+            return $this->redirectToRoute('admin_user_crud_index');
+        }
 
         if (null !== $user) {
             if ($loginLink->send($user)) {

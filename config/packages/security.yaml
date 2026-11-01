@@ -23,6 +23,8 @@ security:
             security: true
             stateless: true
             oauth2: true
+            # Un jeton porteur encore valide d'un compte désactivé est refusé
+            user_checker: App\Security\UserChecker
         main:
             lazy: true
             provider: app_user_provider
@@ -35,12 +37,14 @@ security:
                 form_only: true
             login_link:
                 check_route: login_check
-                signature_properties: [id, email]
+                # enabled : un lien émis avant la désactivation du compte devient invalide
+                signature_properties: [id, email, enabled]
                 max_uses: 3
             entry_point: App\Security\AuthenticationEntryPoint
             remember_me:
                 always_remember_me: true
-                signature_properties: ['id', 'email', 'password']
+                # enabled : désactiver un compte invalide aussitôt ses cookies remember-me
+                signature_properties: ['id', 'email', 'password', 'enabled']
                 lifetime: 31449600 # 1 year in seconds
             switch_user: true
             login_throttling:

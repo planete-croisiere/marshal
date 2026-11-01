@@ -50,6 +50,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     /**
+     * Compte créé par son titulaire (inscription ou connexion sociale) et pas encore activé :
+     * il reste désactivé jusqu'à ce que le titulaire prouve qu'il possède l'adresse email
+     * (lien de connexion ou fournisseur social). Un compte désactivé par un administrateur
+     * n'a jamais ce marqueur, il ne peut donc pas se réactiver en se connectant.
+     */
+    #[ORM\Column(options: ['default' => false])]
+    private bool $pendingActivation = false;
+
+    /**
      * @var Collection<int, Group>
      */
     #[ORM\ManyToMany(targetEntity: Group::class, mappedBy: 'users')]
@@ -313,5 +322,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function isEnabled(): ?bool
     {
         return $this->enabled;
+    }
+
+    public function isPendingActivation(): bool
+    {
+        return $this->pendingActivation;
+    }
+
+    public function setPendingActivation(bool $pendingActivation): static
+    {
+        $this->pendingActivation = $pendingActivation;
+
+        return $this;
+    }
+
+    /**
+     * Première activation par le titulaire du compte, une seule fois.
+     */
+    public function activate(): static
+    {
+        $this->enabled = true;
+        $this->pendingActivation = false;
+
+        return $this;
     }
 }

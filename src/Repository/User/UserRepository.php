@@ -55,10 +55,16 @@ class UserRepository extends ServiceEntityRepository
         return $user;
     }
 
-    public function create(string $email): User
+    /**
+     * @param bool $pendingActivation true pour un compte créé par son titulaire (inscription) : il reste
+     *                                désactivé jusqu'à sa première connexion par lien de connexion
+     */
+    public function create(string $email, bool $pendingActivation = false): User
     {
         $user = new User();
-        $user->setEmail($email);
+        $user
+            ->setEmail($email)
+            ->setPendingActivation($pendingActivation);
 
         // By default, the user is in group with onRegistration = true
         $groups = $this->getEntityManager()
