@@ -41,10 +41,14 @@ class Register extends AbstractController
                 ]);
 
                 if (null === $user) {
-                    $user = $this->userRepository->create($email);
+                    $user = $this->userRepository->create($email, pendingActivation: true);
                 }
 
-                if (!$this->loginLink->send($user)) {
+                // Un compte désactivé par un administrateur ne peut pas se réactiver en se réinscrivant :
+                // aucun lien n'est envoyé (le lien serait de toute façon refusé par le UserChecker)
+                $canLogIn = $user->isEnabled() || $user->isPendingActivation();
+
+                if ($canLogIn && !$this->loginLink->send($user)) {
                     $this->addFlash(
                         'error',
                         'flash.login_link_sent.error',
