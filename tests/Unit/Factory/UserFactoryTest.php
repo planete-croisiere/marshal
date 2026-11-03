@@ -46,6 +46,9 @@ class UserFactoryTest extends TestCase
         $user = $this->userFactory->fromGoogle($googleUser);
         $this->assertInstanceOf(User::class, $user);
         $this->assertEquals('new@example.com', $user->getEmail());
+        // Activé seulement par AccountActivation, à la fin de la connexion sociale
+        $this->assertFalse($user->isEnabled());
+        $this->assertTrue($user->isPendingActivation());
     }
 
     public function testFromGithubReturnsExistingUser(): void
@@ -71,5 +74,7 @@ class UserFactoryTest extends TestCase
         $user = $this->userFactory->fromGithub($githubUser);
         $this->assertInstanceOf(User::class, $user);
         $this->assertEquals('new@example.com', $user->getEmail());
+        $this->assertFalse($user->isEnabled());
+        $this->assertTrue($user->isPendingActivation());
     }
 }
