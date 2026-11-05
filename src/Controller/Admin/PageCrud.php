@@ -7,6 +7,7 @@ namespace App\Controller\Admin;
 use App\Admin\Field\Editorjs;
 use App\Admin\Field\Json;
 use App\Entity\Page\Page;
+use App\Security\RoleName;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -19,7 +20,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_TECHNICAL')]
+#[IsGranted(RoleName::TECHNICAL)]
 class PageCrud extends AbstractCrudController
 {
     public function __construct(

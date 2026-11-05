@@ -7,6 +7,7 @@ namespace App\Controller\Admin;
 use App\Entity\Page\Page;
 use App\Entity\Page\PageLogEntry;
 use App\Repository\Page\PageLogEntryRepository;
+use App\Security\RoleName;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminRoute;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -23,9 +24,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
-use Symfony\Component\Routing\Attribute\Route;
 
-#[IsGranted('ROLE_TECHNICAL')]
+#[IsGranted(RoleName::TECHNICAL)]
 class PageLogEntryCrud extends AbstractCrudController
 {
     public function __construct(
